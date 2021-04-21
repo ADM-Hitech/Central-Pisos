@@ -3,4 +3,31 @@ body {
     > mat-sidenav-container {
         height: 100%;
     }
+
+    .mat-menu-panel {
+        max-width: 900px;
+    }
+
+    .mat-menu-products {
+        padding: 24px;
+        div {
+            margin-right: 40px;
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                font-size: 12px;
+                color: #677080;
+
+                li {
+                    margin-bottom: 15px;
+                }
+            }
+
+            &:last-child {
+                margin-right: 0px;
+            }
+        }
+    }
 }

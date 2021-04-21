@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 

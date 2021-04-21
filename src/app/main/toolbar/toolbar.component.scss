@@ -22,6 +22,26 @@
             right: 0;
             width: 100%;
         }
+
+        .menu-horizontal {
+            li {
+                display: inline;
+                padding-right: .5em;
+                color: mat-color($accent);
+
+                &:last-child {
+                    padding-right: 0;
+                }
+
+                button {
+                    color: #677080;
+
+                    mat-icon {
+                        color: #677080;
+                    }
+                }
+            }
+        }
     }
 
     .logo {

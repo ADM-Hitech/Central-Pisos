@@ -3,7 +3,7 @@
 $mat-white: (
     500: white,
     contrast: (
-        500: $black-87-opacity
+        500: white
     )
 );
 
@@ -20,7 +20,7 @@ $mat-fusedark: (
     200: #9EA1A9,
     300: #7D818C,
     400: #5C616F,
-    500: #3C4252,
+    500: #012794, //primary-bg
     600: #353A48,
     700: #2D323E,
     800: #262933,
@@ -35,7 +35,7 @@ $mat-fusedark: (
         200: $black-87-opacity,
         300: white,
         400: white,
-        500: $white-87-opacity,
+        500: white,
         600: $white-87-opacity,
         700: $white-87-opacity,
         800: $white-87-opacity,

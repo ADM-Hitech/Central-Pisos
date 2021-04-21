@@ -1,40 +1,129 @@
-<mat-toolbar class="p-0 mat-elevation-z1">
-  <mat-progress-bar *ngIf="showLoadingBar" class="loading-bar" color="accent" mode="indeterminate"></mat-progress-bar>
-
-  <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
-    <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-      <button mat-button class="toggle-button-navbar mat-icon-button" appNavbarToggle="toggleBar" fxHide.gt-md>
-        <mat-icon>menu</mat-icon>
-      </button>
-
-      <div class="toolbar-separator" fxHide.gt-md></div>
-
-      <div class="px-8 px-mat-16"></div>
-
+<div fxLayout="column" fxFill>
+  <div fxFlex fxFill fxLayout="row" fxLayoutAlign="space-between center" class="primary-bg p-12">
+    <div class="cont-contact" fxLayout="row">
+      <a href="tel://55 5688-4865" class="mr-24" fxLayout="row" fxLayoutAlign="center center">
+        <mat-icon class="mr-12">call</mat-icon>
+        <span>55 5688-4865</span>
+      </a>
+      <a href="mailto://contacto@centraldepisos.com.mx" fxLayout="row" fxLayoutAlign="center center">
+        <mat-icon class="mr-12">email</mat-icon>
+        <span>contacto@centraldepisos.com.mx</span>
+      </a>
     </div>
-
-    <div fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
-        <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
-          <div fxLayout="row" fxLayoutAlign="center center">
-            <img class="avatar" src="assets/images/avatars/profile.jpg">
-            <span class="username mr-12" fxHide fxShow.gt-sm>{{ loggedUser }}</span>
-            <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
-          </div>
-        </button>
-
-        <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
-          <button mat-menu-item>
-            <mat-icon>account_circle</mat-icon>
-            <span>Perfil</span>
-          </button>
-
-          <button mat-menu-item (click)="logOut()">
-            <mat-icon>exit_to_app</mat-icon>
-            <span>Salir</span>
-          </button>
-        </mat-menu>
-
-        <div class="toolbar-separator"></div>
+    <div class="cont-social" fxLayout="row">
+      <a href="#" fxLayout="row" fxLayoutAlign="center center">
+        <span>Ingresar</span>
+        <mat-icon>person</mat-icon>
+      </a>
+      <div class="ml-12" fxLayout="row" fxLayoutAlign="center center">
+        <span>Siguenos</span>
+        <mat-icon>person</mat-icon>
+        <mat-icon>person</mat-icon>
+        <mat-icon>person</mat-icon>
+      </div>
     </div>
   </div>
-</mat-toolbar>
+  <mat-toolbar class="p-0 mat-elevation-z1" fxLayout="row">
+    
+    <mat-progress-bar *ngIf="showLoadingBar" class="loading-bar" color="accent" mode="indeterminate"></mat-progress-bar>
+
+    <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+        <button mat-button class="toggle-button-navbar mat-icon-button" appNavbarToggle="toggleBar" fxHide.gt-md>
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <div class="logo" fxHide.sm fxHide.xs fxHide.md>
+          <img class="logo-icon" src="assets/images/logos/app_icon_menu.png">
+        </div>
+
+        <div class="toolbar-separator" fxHide.gt-md></div>
+
+        <div class="px-8 px-mat-16"></div>
+
+      </div>
+
+      <div fxFlex="auto" fxLayout="row" fxLayoutAlign="start center">
+        <ul class="menu-horizontal">
+          <li>
+            <button mat-button [matMenuTriggerFor]="menu">
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <span class="mr-12 accent">PRODUCTOS</span>
+                <mat-icon class="s-22">keyboard_arrow_down</mat-icon>
+              </div>
+            </button>
+            <mat-menu #menu="matMenu" class="mat-menu-products">
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>
+                  <ul>
+                    <li>Ver todos los produtos</li>
+                    <li>Azulejos</li>
+                    <li>Azulejos Españoles</li>
+                    <li>Baños</li>
+                    <li>Calentadores</li>
+                    <li>Cenefas</li>
+                    <li>Equipos para Cocina</li>
+                  </ul>
+                </div>
+                <div>
+                  <ul>
+                    <li>Fachadas</li>
+                    <li>Griferia</li>
+                    <li>Hidroduchas</li>
+                    <li>Lavabos</li>
+                    <li>Maila De Cristal</li>
+                    <li>Muebles Para Baño</li>
+                    <li>Pega Azulejo</li>
+                  </ul>
+                </div>
+                <div>
+                  <ul>
+                    <li>Pisos</li>
+                    <li>Pisos Españoles</li>
+                    <li>Tapetes de Mármol</li>
+                    <li>Tinas</li>
+                    <li>Tinacos</li>
+                    <li>Vitroblock</li>
+                    <li>Molduras</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="image">
+                    <img style="max-width: 200px;border-radius: 7px;" src="https://www.centraldepisosdivision.mx/images/116.jpg?crc=171503720" alt="" srcset="">
+                  </div>
+                </div>
+              </div>
+            </mat-menu>
+          </li>
+          <li><button mat-button>NOSOTROS</button></li>
+          <li><button mat-button>SUCURSALES</button></li>
+          <li><button mat-button>CONTACTO</button></li>
+        </ul>
+      </div>
+
+      <div fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+          <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <img class="avatar" src="assets/images/avatars/profile.jpg">
+              <span class="username mr-12" fxHide fxShow.gt-sm>JUAN RIVERA</span>
+              <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+            </div>
+          </button>
+
+          <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item>
+              <mat-icon>account_circle</mat-icon>
+              <span>Perfil</span>
+            </button>
+
+            <button mat-menu-item (click)="logOut()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Salir</span>
+            </button>
+          </mat-menu>
+
+          <div class="toolbar-separator"></div>
+      </div>
+    </div>
+  </mat-toolbar>
+</div>
