@@ -1,12 +1,13 @@
 import { MenuGroupInterface } from './menu-group.interface';
 import { MenuCollapseInterface } from './menu-collapse.interface';
 import { MenuIntemInterface } from './menu-intem.interface';
+import { CategoryModel } from './category.model';
 
 export class AppNavigationModel {
 
     public model: (MenuGroupInterface | MenuCollapseInterface | MenuIntemInterface)[];
 
-    constructor(rol?: string, modules?: Array<any>) {
+    constructor(categories: Array<CategoryModel>) {
         this.model = [
             {
                 id: 'menu',
@@ -15,32 +16,34 @@ export class AppNavigationModel {
                 icon: '',
                 children: [
                     {
-                        id   : 'investment',
-                        title: 'Inversiones',
-                        type : 'item',
-                        url  : 'investment',
-                        icon: 'addchart'
+                        id: 'products',
+                        title: 'PRODUCTOS',
+                        type: 'collapse',
+                        iconCustom: false,
+                        children: categories.map((category) => ({
+                            id: category.id.toString(),
+                            title: category.name,
+                            type: 'item',
+                            url: `/productos/categoria/${category.id}`
+                        }))
                     },
                     {
-                        id   : 'profile',
-                        title: 'Mi Perfil',
+                        id   : 'we',
+                        title: 'NOSOTROS',
                         type : 'item',
-                        url  : 'my-profile',
-                        icon: 'manage_accounts'
+                        url  : 'nosotros'
                     },
                     {
-                        id   : 'technicalsupport',
-                        title: 'Soporte Técnico',
+                        id   : 'branchs',
+                        title: 'SUCURSALES',
                         type : 'item',
-                        url  : 'technical-support',
-                        icon: 'addchart'
+                        url  : 'sucursales'
                     },
                     {
-                        id   : 'settings',
-                        title: 'Ajustes',
+                        id   : 'contact',
+                        title: 'CONTACTO',
                         type : 'item',
-                        url  : 'settings',
-                        icon: 'addchart'
+                        url  : 'contacto'
                     }
                 ]
             }

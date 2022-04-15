@@ -28,13 +28,39 @@ import {
     LayoutAlignStyleBuilder,
     FlexFillStyleBuilder
 } from '@angular/flex-layout';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CardCategoryComponent } from '../components/card-category/card-category.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { CardProductComponent } from '../components/card-product/card-product.component';
+import { HeaderPagesComponent } from '../components/header-pages/header-pages.component';
+import { CardBranchOfficeComponent } from '../components/card-branch-office/card-branch-office.component';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { WoocommerceService } from '../services/woocommerce.service';
+import { SnakBarAlertComponent } from '../components/snak-bar-alert/snak-bar-alert.component';
+import { ConektaService } from '../services/conekta.service';
+import { ItemOrderComponent } from '../components/item-order/item-order.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProductReviewComponent } from '../components/product-review/product-review.component';
+import { ReceiptOfPaymentComponent } from '../components/receipt-of-payment/receipt-of-payment.component';
+import { AlertShippingComponent } from '../components/alert-shipping/alert-shipping.component';
+import { ReceiptOfPaymentCardComponent } from '../components/receipt-of-payment-card/receipt-of-payment-card.component';
 
 @NgModule({
     declarations: [
         AppMatSidenavHelperDirective,
         AppMatSidenavTogglerDirective,
         AppIfOnDomDirective,
-        AppPerfectScrollbarDirective
+        AppPerfectScrollbarDirective,
+        CardCategoryComponent,
+        CardProductComponent,
+        HeaderPagesComponent,
+        CardBranchOfficeComponent,
+        SnakBarAlertComponent,
+        ItemOrderComponent,
+        ProductReviewComponent,
+        ReceiptOfPaymentComponent,
+        AlertShippingComponent,
+        ReceiptOfPaymentCardComponent
     ],
     imports: [
         FlexLayoutModule,
@@ -44,7 +70,11 @@ import {
         AppPipeModule,
         ReactiveFormsModule,
         NgxDnDModule,
-        NgxDatatableModule
+        NgxDatatableModule,
+        NgbModule,
+        IvyCarouselModule,
+        AgmCoreModule.forRoot({apiKey: 'AIzaSyBxyqx1ovc98MV7imdwemTz421H_VsCBrM', libraries: ['places']}),
+        FontAwesomeModule
     ],
     exports: [
         FlexLayoutModule,
@@ -58,16 +88,30 @@ import {
         ReactiveFormsModule,
         NgxDnDModule,
         NgxDatatableModule,
-        AppIfOnDomDirective
+        AppIfOnDomDirective,
+        NgbModule,
+        CardCategoryComponent,
+        IvyCarouselModule,
+        CardProductComponent,
+        HeaderPagesComponent,
+        CardBranchOfficeComponent,
+        AgmCoreModule,
+        ItemOrderComponent,
+        FontAwesomeModule,
+        ReceiptOfPaymentComponent,
+        ReceiptOfPaymentCardComponent
     ],
     entryComponents: [
-        // component
+        // component modals
+        SnakBarAlertComponent,
+        ProductReviewComponent,
+        AlertShippingComponent
     ],
     providers: [
         AppMatchMediaService,
         NavbarService,
         AppMatSidenavHelperService,
-
+        GoogleMapsAPIWrapper,
         StyleUtils,
         StylesheetMap,
         MediaMarshaller,
@@ -80,7 +124,9 @@ import {
         FlexOrderStyleBuilder,
         MediaObserver,
         LayoutAlignStyleBuilder,
-        FlexFillStyleBuilder
+        FlexFillStyleBuilder,
+        WoocommerceService,
+        ConektaService
     ]
 })
 export class SharedModule {}

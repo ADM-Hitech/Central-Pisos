@@ -28,7 +28,7 @@ constructor(
       colorClasses: {
         toolbar: 'mat-white-500-bg',
         navbar: 'mat-app-900-bg',
-        footer: 'mat-fuse-dark-900-bg'
+        footer: 'primary-bg'
       },
       customScrollbars: true,
       routerAnimation: 'fadeIn'

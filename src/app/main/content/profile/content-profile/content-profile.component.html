@@ -1,0 +1,28 @@
+<div class="content" fxLayout="column" appPerfectScrollbar>
+    <div class="breadcrums pt-12 pb-12" fxLayout="row" fxLayoutGap="8px">
+        <span class="cursor-pointer" [routerLink]="['/']">Inicio</span>
+        <span>/</span>
+        <span>Mi Cuenta</span>
+    </div>
+
+    <div class="container" fxLayout="column" fxLayoutAlign="start start">
+        <div class="title mb-24" fxLayout="column" fxFill>
+            <h1>Mis datos</h1>
+            <span class="divider"></span>
+        </div>
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="24px" fxFill>
+            <div class="content-menu" fxFlex="20">
+                <mat-list fxLayoutGap="8px" fxLayout="column">
+                    <mat-list-item [routerLink]="['/perfil/detalles']" routerLinkActive="router-link-active"> Detalles de mi cuenta </mat-list-item>
+                    <mat-list-item [routerLink]="['/perfil/change-password']" routerLinkActive="router-link-active"> Modificar contresaña </mat-list-item>
+                    <mat-list-item [routerLink]="['/perfil/mis-direcciones']" routerLinkActive="router-link-active"> Mis direcciones </mat-list-item>
+                    <mat-list-item [routerLink]="['/perfil/mis-pedidos']" routerLinkActive="router-link-active"> Mis pedidos </mat-list-item>
+                    <mat-list-item fxFlex fxLayout="row" fxLayoutAlign="space-between center" (click)="logOut()"> Cerrar sesión  <mat-icon>logout</mat-icon></mat-list-item>
+                </mat-list>
+            </div>
+            <div class="content-form" fxFlex="80">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

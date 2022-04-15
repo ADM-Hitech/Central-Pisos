@@ -1,0 +1,9 @@
+@import '../../../../../core/scss/app';
+
+:host {
+    app-pay-for-credit-card {
+        mat-form-field {
+            width: 100%;
+        }
+    }
+}

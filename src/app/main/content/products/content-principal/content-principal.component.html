@@ -1,0 +1,110 @@
+<div class="content" fxLayout="column" appPerfectScrollbar>
+    <div class="breadcrums pt-12 pb-12" fxLayout="row" fxLayoutGap="8px">
+        <span class="cursor-pointer" [routerLink]="['/']">Inicio</span>
+        <span>/</span>
+        <span class="cursor-pointer" [routerLink]="['/productos']">Productos</span>
+        <span>/</span>
+        <span>Todos los Productos</span>
+    </div>
+
+    <div class="container">
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between center">
+            <div class="title">
+                <h1>Productos</h1>
+                <span class="divider"></span>
+            </div>
+            <div class="number-per-page" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="12px" fxLayoutGap.gt-sm="24px">
+                <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="center center">
+                    <mat-label>Mostrar:</mat-label>
+                    <mat-form-field appearance="outline" class="per-page">
+                        <mat-select [(ngModel)]="perpage" (selectionChange)="changePerPage($event.value)">
+                          <mat-option [value]="20">20</mat-option>
+                          <mat-option [value]="50">50</mat-option>
+                          <mat-option [value]="100">100</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="center center">
+                    <mat-label>Ordenar por:</mat-label>
+                    <mat-form-field appearance="outline" class="order-by" >
+                        <mat-select [(ngModel)]="orderby" (selectionChange)="changeOrderBy($event.value)">
+                          <mat-option value="popularity">Los más vendidos</mat-option>
+                          <mat-option value="price-asc">Menor precio</mat-option>
+                          <mat-option value="price">Mayor precio</mat-option>
+                          <mat-option value="rating">Popular</mat-option>
+                          <mat-option value="title">Nombre</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="24px" class="mt-24">
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <div class="content-categories" style="background-color: #f3f4f8;" fxHide fxShow.gt-sm>
+                    <p class="title">Mostrar:</p>
+                    <p class="link-category" [routerLink]="['/productos']">Todos los productos</p>
+                    <mat-divider></mat-divider>
+
+                    <div *ngIf="loadingCategories" class="mt-24" fxLayout="row" fxLayoutAlign="center center">
+                        <mat-spinner [diameter]="35"></mat-spinner>
+                    </div>
+                    
+                    <ng-container *ngIf="!loadingCategories">
+                        <ng-container *ngFor="let category of categories">
+                            <p class="link-category" [routerLink]="['categoria/', category.id]" >{{ category.name }}</p>
+                            <mat-divider></mat-divider>
+                        </ng-container>
+                    </ng-container>
+                </div>
+
+                <mat-accordion fxShow fxHide.gt-sm class="content-categories">
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <p class="title" style="margin-bottom: 0; margin-top: 0;">Mostrar Por Categoria:</p>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p class="link-category">Todos los productos</p>
+                        <mat-divider></mat-divider>
+
+                        <div *ngIf="loadingCategories" class="mt-24" fxLayout="row" fxLayoutAlign="center center">
+                            <mat-spinner [diameter]="35"></mat-spinner>
+                        </div>
+                        
+
+                        <ng-container *ngIf="!loadingCategories">
+                            <ng-container *ngFor="let category of categories">
+                                <p class="link-category" [routerLink]="['categoria/', category.id]" >{{ category.name }}</p>
+                                <mat-divider></mat-divider>
+                            </ng-container>
+                        </ng-container>
+
+                    </mat-expansion-panel>
+                </mat-accordion>
+                  
+            </div>
+            <div fxFlex="100" class="content-products" fxFlex.gt-sm="70" fxLayoutGap="12px" fxLayout="row wrap" fxLayoutAlign="start start">
+                <div *ngIf="loadingProducts" class="mt-24" fxFill fxLayout="row" fxLayoutAlign="center start">
+                    <mat-spinner [diameter]="35"></mat-spinner>
+                </div>
+                <ng-container *ngIf="!loadingProducts">
+                    <div fxFlex="100" fxFlex.gt-sm="30" class="mb-24" *ngFor="let product of products" fxLayoutAlign="center center">
+                        <app-card-product [withBorder]="true" [product]="product"></app-card-product>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="pagination" fxLayout="row" fxLayoutAlign="end center">
+            <div fxFlex="70" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
+                <mat-label>Página:</mat-label>
+                <mat-form-field appearance="outline" class="pagination-page">
+                    <mat-select [(ngModel)]="currentPage" (selectionChange)="changePage($event.value)">
+                        <mat-option *ngFor="let number of allPage" [value]="number">{{ number }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-label> de {{ totalPages }}</mat-label>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,16 +1,75 @@
-<mat-toolbar>
-  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="space-between center" fxFlex>
-    <a href="http://themeforest.net/item/fuse-angularjs-material-design-admin-template/12931855?ref=srcn"
-      target="_blank" mat-button class="mat-pink-bg" fxFlex="0 0 auto" fxLayout="row"
-      fxLayoutAlign="start center">
-      <mat-icon class="s-16 mr-sm-4">shopping_cart</mat-icon>
-      <span>Purchase FUSE (Angular5+)</span>
-    </a>
-
-    <div fxLayout="row" fxLayoutAlign="start center" fxHide fxShow.gt-xs>
-      <a mat-button href="http://fusetheme.com/angular/docs" target="_blank">Documentation</a>
-      <span>&bull;</span>
-      <a mat-button href="http://fusetheme.com/angular/changelog" target="_blank">Changelog</a>
+<div class="ctn-principal" fxFill fxLayout="column">
+  <div class="content-footer" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between start" fxLayoutGap="50px">
+    <div>
+      <h4>Central de Pisos</h4>
+      <p class="cursor-pointer" [routerLink]="['/nosotros']" >Nosotros</p>
+      <p class="cursor-pointer" [routerLink]="['/sucursales']">Sucursales</p>
+      <p class="cursor-pointer" [routerLink]="['/contacto']">Contacto</p>
+      <p>Aviso de Privacidad</p>
+      <br>
+      <h4>Atención y horarios</h4>
+      <p>contacto@centraldepisos.com.mx</p>
+      <p>Lunes a Domingo de 09:00 a 19:00 hrs.</p>
+      <div fxLayout="row" fxLayoutGap="12px">
+        <span>Síguenos</span>
+        <div fxLayout="row" fxLayoutGap="12px">
+          <div class="btn-social">
+            <a href="https://www.facebook.com/grupocentraldepisos/" target="_blank"><img src="assets/images/icons/ico-social-facebook.svg" alt=""></a>
+          </div>
+          <div class="btn-social">
+            <a href="https://www.instagram.com/centraldepisos/" target="_blank"><img src="assets/images/icons/ico-social-instagram.svg" alt=""></a>
+          </div>
+          <div class="btn-social">
+            <a href="https://twitter.com/centraldepisosD" target="_blank"><img src="assets/images/icons/ico-social-twitter.svg" alt=""></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h4>Productos</h4>
+      <div fxLayout="row" fxLayoutGap="24px">
+        <div class="ctn-list-category">
+          <ul class="list-category">
+            <li class="cursor-pointer" [routerLink]="['/productos/categoria/', category.id]" *ngFor="let category of categories" >
+              {{ category.name | uppercase }}
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+    </div>
+    <div fxLayout="column" fxLayoutGap="24px">
+      <div>
+        <h4>CDMX</h4>
+        <p>
+          Azores 712 Col. Santa Cruz Atoyac entre División<br>
+          del Norte y República, Delegación Benito Juárez <br>
+          C.P 03310 <br>
+          Tels: <br>
+          55 5688-4865 | 55 5688-8494 <br>
+          55 5688-0766 | 55 5688-4908 <br>
+        </p>
+      </div>
+      <div>
+        <h4>Querétaro</h4>
+        <p>
+          Av. Paseo Central No. 12 Colonia San cayetano<br>
+          C.P. 76807 San Juan del Río Querétaro<br>
+          Tels: 01 (427) 272 4650 | 01 (427) 272 6324 <br>
+        </p>
+      </div>
     </div>
   </div>
-</mat-toolbar>
+
+  <div fxLayout="row" class="content-info pt-12 pb-12" fxLayoutAlign="center center">
+    <div class="ctn-bg" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between center">
+        <p>TODOS LOS DERECHOS RESERVADOS 2021</p>
+      <div fxLayout="row" fxLayoutGap="18px" class="content-icons-pay">
+        <img src="assets/images/icons/ico-pago-visa.svg" alt="">
+        <img src="assets/images/icons/ico-pago-mastercard.svg" alt="">
+        <img src="assets/images/icons/ico-pago-amex.svg" alt="">
+        <img src="assets/images/icons/ico-pago-oxxo.svg" alt="">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="content" fxLayout="column">
+    <h2 class="mb-24">Mis direcciones</h2>
+    <mat-progress-bar
+        mode="indeterminate" *ngIf="loadingData">
+    </mat-progress-bar>
+    <mat-divider></mat-divider>
+    <div class="address mt-24" fxLayout="column">
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px">
+            <div class="card-address" fxFlex="100" fxFlex.gt-sm="30">
+                <div class="content-data pt-24 pl-24 pr-24 pb-12">
+                    <p class="title">Dirección de envío</p>
+                    <p>{{ shipping.firstName }} {{ shipping.lastName }}</p>
+                    <p>{{ shipping.address1 }} {{ shipping.numExt }} {{ shipping.numInt }}</p>
+                    <p>Col. {{ shipping.colony }}, CP {{ shipping.postcode }}</p>
+                    <p>{{ getState(shipping.state) }}</p>
+                    <p>{{ shipping.email }}</p>
+                    <p>{{ shipping.phone }}</p>
+                </div>
+                <div class="actions">
+                    <button (click)="goTo('envio')">
+                        <mat-icon>edit</mat-icon>
+                        <u>Editar</u>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card-address" fxFlex="100" fxFlex.gt-sm="30">
+                <div class="content-data pt-24 pl-24 pr-24 pb-12">
+                    <p class="title">Dirección de facturación</p>
+                    <p>{{ billing.firstName }} {{ billing.lastName }}</p>
+                    <p>{{ billing.address1 }} {{ billing.numExt }} {{ billing.numInt }}</p>
+                    <p>Col. {{ billing.colony }}, CP {{ billing.postcode }}</p>
+                    <p>{{ getState(billing.state) }}</p>
+                    <p>{{ billing.email }}</p>
+                    <p>{{ billing.phone }}</p>
+                </div>
+                <div class="actions">
+                    <button (click)="goTo('facturacion')">
+                        <mat-icon>edit</mat-icon>
+                        <u>Editar</u>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

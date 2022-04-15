@@ -1,0 +1,51 @@
+<div class="content-badge mt-24" fxLayout="column" [formGroup]="form">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+
+        <div fxFlex="50">
+            <mat-form-field appearance="outline">
+                <mat-label>Titular de la tarjeta</mat-label>
+                <input matInput required formControlName="name">
+                <mat-icon matSuffix *ngIf="isValidForShipping('name')">done</mat-icon>
+                
+            </mat-form-field>
+        </div>
+
+        <div fxFlex="50">
+            <mat-form-field appearance="outline">
+                <mat-label>Numero de tarjeta (16 dígitos)</mat-label>
+                <input matInput required formControlName="number">
+                <mat-icon matSuffix *ngIf="isValidForShipping('number')">done</mat-icon>
+                
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Mes Expiración</mat-label>
+                <input matInput placeholder="00" required formControlName="exp_month">
+                <mat-icon matSuffix *ngIf="isValidForShipping('exp_month')">done</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Año Expiración</mat-label>
+                <input matInput placeholder="0000" required formControlName="exp_year">
+                <mat-icon matSuffix *ngIf="isValidForShipping('exp_year')">done</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div fxFlex="28">
+            <mat-form-field appearance="outline">
+                <mat-label>CVV</mat-label>
+                <input matInput placeholder="000" required formControlName="cvc">
+                <mat-icon matSuffix *ngIf="isValidForShipping('cvc')">done</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <p class="mt-24 mb-24">Por tu seguridad, los datos de tu tarjeta <b>NO son almacenados</b> para próximas compras.</p>
+</div>

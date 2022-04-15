@@ -1,6 +1,6 @@
 <div fxLayout="column" fxFill>
-  <div fxFlex fxFill fxLayout="row" fxLayoutAlign="space-between center" class="primary-bg p-12">
-    <div class="cont-contact" fxLayout="row">
+  <div fxFlex fxFill fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between center" class="primary-bg first-toolbar">
+    <div fxHide fxShow.gt-sm class="cont-contact" fxLayout="column" fxLayout.gt-sm="row">
       <a href="tel://55 5688-4865" class="mr-24" fxLayout="row" fxLayoutAlign="center center">
         <mat-icon class="mr-12">call</mat-icon>
         <span>55 5688-4865</span>
@@ -11,39 +11,83 @@
       </a>
     </div>
     <div class="cont-social" fxLayout="row">
-      <a href="#" fxLayout="row" fxLayoutAlign="center center">
-        <span>Ingresar</span>
-        <mat-icon>person</mat-icon>
-      </a>
-      <div class="ml-12" fxLayout="row" fxLayoutAlign="center center">
-        <span>Siguenos</span>
-        <mat-icon>person</mat-icon>
-        <mat-icon>person</mat-icon>
-        <mat-icon>person</mat-icon>
+
+      <button mat-button [matMenuTriggerFor]="authMenu"
+              class="user-button" *ngIf="!isLogged()">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <span class="username mr-12" fxHide fxShow.gt-sm>{{ displayName }}</span>
+          <mat-icon>person</mat-icon>
+        </div>
+      </button>
+
+      <mat-menu #authMenu="matMenu">
+
+        <button mat-menu-item [routerLink]="['/auth/login']">
+          <mat-icon style="transform: rotate(180deg);">login</mat-icon>
+          <span>Iniciar sesión</span>
+        </button>
+
+        <button mat-menu-item [routerLink]="['/auth/registro']">
+          <mat-icon>person</mat-icon>
+          <span>Registro</span>
+        </button>
+
+      </mat-menu>
+
+      <button mat-button [matMenuTriggerFor]="userMenu"
+              class="user-button" *ngIf="isLogged()">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <span class="username mr-12" fxHide fxShow.gt-sm>{{ displayName }}</span>
+          <mat-icon class="s-16">keyboard_arrow_down</mat-icon>
+        </div>
+      </button>
+
+      <mat-menu #userMenu="matMenu">
+
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span [routerLink]="['/perfil']">Mi Perfil</span>
+        </button>
+
+        <button mat-menu-item>
+          <mat-icon>list</mat-icon>
+          <span [routerLink]="['/perfil/mis-pedidos']" >Mis pedidos</span>
+        </button>
+
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar sesión</span>
+        </button>
+
+      </mat-menu>
+
+      <div class="ml-12" fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="center center">
+        <span>Síguenos</span>
+        <a style="display: flex;" href="https://www.facebook.com/grupocentraldepisos/" target="_blank"><img width="16px" class="cursor-pointer" src="assets/images/icons/ico-social-facebook.svg" alt=""></a>
+        <a style="display: flex;" href="https://www.instagram.com/centraldepisos/" target="_blank"><img width="16px" class="cursor-pointer" src="assets/images/icons/ico-social-instagram.svg" alt=""></a>
+        <a style="display: flex;" href="https://twitter.com/centraldepisosD" target="_blank"><img width="16px" class="cursor-pointer" src="assets/images/icons/ico-social-twitter.svg" alt=""></a>
       </div>
     </div>
   </div>
-  <mat-toolbar class="p-0 mat-elevation-z1" fxLayout="row">
+  <mat-toolbar class="p-0" fxLayout="row">
     
     <mat-progress-bar *ngIf="showLoadingBar" class="loading-bar" color="accent" mode="indeterminate"></mat-progress-bar>
 
     <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
       <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-        <button mat-button class="toggle-button-navbar mat-icon-button" appNavbarToggle="toggleBar" fxHide.gt-md>
+        <button mat-button class="toggle-button-navbar mat-icon-button" appMatSidenavToggler="quick-panel" fxShow fxHide.gt-sm>
           <mat-icon>menu</mat-icon>
         </button>
 
-        <div class="logo" fxHide.sm fxHide.xs fxHide.md>
-          <img class="logo-icon" src="assets/images/logos/app_icon_menu.png">
+        <div class="logo cursor-pointer" fxHide fxShow.gt-sm [routerLink]="['/']" >
+          <img class="logo-icon" src="assets/images/logos/logo-color.png">
         </div>
-
-        <div class="toolbar-separator" fxHide.gt-md></div>
 
         <div class="px-8 px-mat-16"></div>
 
       </div>
 
-      <div fxFlex="auto" fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="auto" fxLayout="row" fxLayoutAlign="start center" fxHide fxShow.gt-sm>
         <ul class="menu-horizontal">
           <li>
             <button mat-button [matMenuTriggerFor]="menu">
@@ -54,37 +98,15 @@
             </button>
             <mat-menu #menu="matMenu" class="mat-menu-products">
               <div fxLayout="row" fxLayoutAlign="space-between center">
-                <div>
-                  <ul>
-                    <li>Ver todos los produtos</li>
-                    <li>Azulejos</li>
-                    <li>Azulejos Españoles</li>
-                    <li>Baños</li>
-                    <li>Calentadores</li>
-                    <li>Cenefas</li>
-                    <li>Equipos para Cocina</li>
-                  </ul>
-                </div>
-                <div>
-                  <ul>
-                    <li>Fachadas</li>
-                    <li>Griferia</li>
-                    <li>Hidroduchas</li>
-                    <li>Lavabos</li>
-                    <li>Maila De Cristal</li>
-                    <li>Muebles Para Baño</li>
-                    <li>Pega Azulejo</li>
-                  </ul>
-                </div>
-                <div>
-                  <ul>
-                    <li>Pisos</li>
-                    <li>Pisos Españoles</li>
-                    <li>Tapetes de Mármol</li>
-                    <li>Tinas</li>
-                    <li>Tinacos</li>
-                    <li>Vitroblock</li>
-                    <li>Molduras</li>
+                <div class="cnt-list-category">
+                  <ul class="list-category">
+                    <li class="cursor-pointer" [routerLink]="['/productos']">Ver todos los produtos</li>
+                    <li 
+                      class="cursor-pointer" 
+                      [routerLink]="['/productos/categoria/', category.id]"
+                      *ngFor="let category of categories">
+                      {{ category.name }}
+                    </li>
                   </ul>
                 </div>
                 <div>
@@ -95,35 +117,35 @@
               </div>
             </mat-menu>
           </li>
-          <li><button mat-button>NOSOTROS</button></li>
-          <li><button mat-button>SUCURSALES</button></li>
-          <li><button mat-button>CONTACTO</button></li>
+          <li><button mat-button [routerLink]="['/nosotros']" routerLinkActive="router-link-active" >NOSOTROS</button></li>
+          <li><button mat-button [routerLink]="['/sucursales']" routerLinkActive="router-link-active" >SUCURSALES</button></li>
+          <li><button mat-button [routerLink]="['/contacto']" routerLinkActive="router-link-active" >CONTACTO</button></li>
         </ul>
       </div>
 
-      <div fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
-          <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
-            <div fxLayout="row" fxLayoutAlign="center center">
-              <img class="avatar" src="assets/images/avatars/profile.jpg">
-              <span class="username mr-12" fxHide fxShow.gt-sm>JUAN RIVERA</span>
-              <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
-            </div>
-          </button>
-
-          <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
-            <button mat-menu-item>
-              <mat-icon>account_circle</mat-icon>
-              <span>Perfil</span>
-            </button>
-
-            <button mat-menu-item (click)="logOut()">
-              <mat-icon>exit_to_app</mat-icon>
-              <span>Salir</span>
-            </button>
-          </mat-menu>
-
-          <div class="toolbar-separator"></div>
+      <div fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+        <div class="input-search">
+          <input type="search" (keypress)="applyfilter($event)" placeholder="Ingresa tu búsqueda" [(ngModel)]="filter">
+          <mat-icon (click)="applyfilter()" class="cursor-pointer">search</mat-icon>
+        </div>
+        <div class="content-icon-cart" fxLayout="row" fxLayoutAlign="start center" [routerLink]="['/cart']" >
+          <mat-icon class="icon-cart">shopping_cart</mat-icon>
+          <span class="badget">{{countProducts}}</span>
+        </div>
       </div>
     </div>
   </mat-toolbar>
+  <div class="ctn-banner" *ngIf="activeBanner">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="ctn-label">
+        <p>Utiliza el código <b>“CENTRALAMOR”</b></p>
+        <p><small>y aprovecha el 10% OFF en todos nuestros productos.</small></p>
+         
+      </div>
+
+      <div class="ctn-code">
+        <p>Codigo: <b>CENTRALAMOR</b></p>
+      </div>
+    </div>
+  </div>
 </div>

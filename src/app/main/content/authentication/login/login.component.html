@@ -1,3 +1,38 @@
-<p>
-  login works!
-</p>
+<div class="content" fxLayout="column" appPerfectScrollbar>
+  <div class="breadcrums pt-12 pb-12" fxLayout="row" fxLayoutGap="8px">
+    <span>Inicio</span>
+    <span>/</span>
+    <span>Ingresar</span>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayoutAlign="center start">
+    <div class="form" fxLayout="column" [formGroup]="form">
+      <div class="title mb-24" fxLayout="column">
+        <h1>Iniciar sesión</h1>
+        <span class="divider"></span>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Correo electrónico</mat-label>
+        <input matInput required formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input matInput required formControlName="password" type="{{ showpass ? 'text' : 'password' }}">
+        <mat-icon matSuffix class="cursor-pointer" (click)="showAndHidePassword()">visibility</mat-icon>
+      </mat-form-field>
+
+      <div class="links" fxLayout="row" fxLayoutAlign="space-between center">
+        <a [routerLink]="['/auth/recuperar-cuenta']"><u>Olvidé mi contraseña</u></a>
+        <a [routerLink]="['/auth/registro']" ><u>Crear una cuenta</u></a>
+      </div>
+
+      <div class="content-button mt-24">
+        <button mat-flat-button color="primary" (click)="submit()" [disabled]="loading">
+          INGRESAR
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

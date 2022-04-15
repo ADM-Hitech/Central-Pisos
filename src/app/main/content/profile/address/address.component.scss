@@ -1,0 +1,48 @@
+@import '../../../../core/scss/app';
+
+.content {
+    .address {
+        .card-address {
+            background-color: #f3f5f9;
+            border: 2px solid #e6e9f1;
+            border-radius: 4px;
+            
+            .content-data {
+                p {
+                    margin-bottom: 0;
+                    font-size: 12px;
+                    color: #727a81;
+
+                    &.title {
+                        color: #030408;
+                        margin-bottom: 12px;
+                    }
+                }
+            }
+
+            .actions {
+                background-color: #e6e9f1;
+                padding: 8px 24px;
+
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    mat-icon {
+                        width: 15px;
+                        height: 15px;
+                        font-size: 19px;
+                        display: flex;
+                        justify-content: center;
+                        color: #333d56;
+                    }
+
+                    u {
+                        color: #727a81;
+                    }
+                }
+            }
+        }
+    }
+}

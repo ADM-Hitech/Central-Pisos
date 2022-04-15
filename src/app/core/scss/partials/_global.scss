@@ -1,5 +1,4 @@
 body {
-
     > mat-sidenav-container {
         height: 100%;
     }
@@ -13,6 +12,13 @@ body {
         div {
             margin-right: 40px;
 
+            &.cnt-list-category {
+                -webkit-column-count: 3;
+                -moz-column-count: 3;
+                column-count: 3;
+                column-gap: 40px;
+            }
+
             ul {
                 list-style: none;
                 padding: 0;
@@ -23,11 +29,114 @@ body {
                 li {
                     margin-bottom: 15px;
                 }
+
+                &.list-category {
+                }
             }
 
             &:last-child {
                 margin-right: 0px;
             }
         }
+    }
+
+    .carousel-arrow {
+        border-radius: 3px !important;
+        height: 40px !important;
+        width: 40px !important;
+        background-color: black !important;   
+    }
+
+    .carousel-arrow-prev {
+        left: -20px !important;
+        &::after {
+            content: '<';
+            color: white;
+            font-size: 20px;
+            line-height: 40px;
+            font-family: arial;
+        }
+    }
+
+    .carousel-arrow-next {
+        right: -20px !important;
+        &::after {
+            content: '>';
+            color: white;
+            font-size: 20px;
+            line-height: 40px;
+            font-family: arial;
+        }
+    }
+
+    .carousel-brands {
+        .carousel-arrows {
+            display: none !important;
+        }
+    }
+
+    .divider {
+        width: 70px;
+        height: 1px;
+        background-color: #bdc5d4;
+        display: block;
+    }
+
+    .input-quantity {
+        display: flex;
+        align-items: center;
+
+        .val {
+            display: flex;
+            padding: 5px 15px;
+            border-top: 2px solid #d0d0d0;
+            border-bottom: 2px solid #d0d0d0;
+            font-size: 15px;
+        }
+
+        .btn {
+            border: 2px solid #d0d0d0;
+            display: flex;
+            align-items: center;
+
+            &.minus {
+                border-radius: 7px 0px 0 7px;
+            }
+
+            &.plus {
+                border-radius: 0px 7px 7px 0px;
+            }
+        }
+    }
+
+    table {
+        width: 100%;
+    }
+
+    .discount {
+        width: 45px;
+        height: 45px;
+        background-color: red;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3px;
+        font-weight: 400;
+    }
+
+    .breadcrums {
+        span {
+            color: #b1b9cb;
+            font-size: 10px;
+
+            &:last-child {
+                color: #4c596f;
+            }
+        }
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
     }
 }

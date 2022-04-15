@@ -1,0 +1,93 @@
+<div class="content" fxLayout="column" appPerfectScrollbar>
+    <app-header-pages namePage="Contacto" image="assets/images/backgrounds/banner-top-contacto.png"></app-header-pages>
+
+    <div class="breadcrums pt-12 pb-12" fxLayout="row" fxLayoutGap="8px">
+        <span class="cursor-pointer" [routerLink]="['/']">Inicio</span>
+        <span>/</span>
+        <span>Contacto</span>
+    </div>
+
+    <div class="container">
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="30px">
+            <div class="content-form" fxFlex="60" fxLayout="column">
+                <h1>Escríbenos un mensaje</h1>
+                <span class="divider"></span>
+                <p class="mt-24">
+                    Envía tus datos y un asesor se pondrá en contacto para resolver tus dudas.
+                    <br>
+                    Verifica que hayas llenado todos los campos <span class="color-require">requeridos*</span>.
+                </p>
+                <div fxLayout="column" fxLayoutGap="12px" class="form" [formGroup]="form">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput required formControlName="name">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Correo electrónico</mat-label>
+                        <input matInput placeholder="ejemplo@ejemplo.com" required formControlName="email">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Teléfono</mat-label>
+                        <input matInput placeholder="(000) 0000-000" formControlName="telephone">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Mensaje</mat-label>
+                        <textarea matInput rows="8" required formControlName="message"></textarea>
+                    </mat-form-field>
+                    <section class="terminos-and-condiciones">
+                        <mat-checkbox formControlName="terminos">Acepto los <a>términos y condiciones</a>.</mat-checkbox>
+                    </section>
+                    <button mat-flat-button color="primary" [disabled]="form.invalid || loading" (click)="submit()">ENVIAR</button>
+                </div>
+            </div>
+            <div class="content-contact" fxFlex="40" fxLayout="column">
+                <div class="general">
+                    <p>Contáctanos</p>
+                    <div class="whatsapp widget" fxLayout="row" fxLayoutGap="12px">
+                        <div class="icon">
+                            <i class="fa fa-whatsapp"></i>
+                        </div>
+                        <div class="text">
+                            <p>WhatsApp</p>
+                            <p>55 5688-4865</p>
+                        </div>
+                    </div>
+                    <span class="divider"></span>
+                    <div class="email widget" fxLayout="row" fxLayoutGap="12px">
+                        <div class="icon">
+                            <mat-icon>mail</mat-icon>
+                        </div>
+                        <div class="text">
+                            <p>Correo electrónico</p>
+                            <p>contacto@centraldepisos.com.mx</p>
+                        </div>
+                    </div>
+                    <span class="divider"></span>
+                    <div class="schedule widget" fxLayout="row" fxLayoutGap="12px">
+                        <div class="icon">
+                            <mat-icon>update</mat-icon>
+                        </div>
+                        <div class="text">
+                            <p>Horarios de atención</p>
+                            <p>Lun-Dom de 09:00 a 19:00 hrs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-network">
+                    <p>Síguenos</p>
+                    <div class="icons" fxLayout="row" fxLayoutGap="12px">
+                        <div class="facebook icon">
+                            <i class="fa fa-facebook"></i>
+                        </div>
+                        <div class="instagram icon">
+                            <i class="fa fa-instagram"></i>
+                        </div>
+                        <div class="twitter icon">
+                            <i class="fa fa-twitter"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

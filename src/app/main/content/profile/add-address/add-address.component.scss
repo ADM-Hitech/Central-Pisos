@@ -1,0 +1,19 @@
+@import '../../../../core/scss/app';
+
+.content {
+    .form {
+        .mat-form-field {
+            width: 100%;
+        }
+
+        .content-buttons {
+            button {
+                font-weight: 300;
+
+                &.btn-cancel {
+                    background-color: #f3f5f9;
+                }
+            }
+        }
+    }
+}

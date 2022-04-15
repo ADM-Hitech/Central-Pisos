@@ -1,0 +1,67 @@
+<h2 mat-dialog-title class="title-head" style="margin-bottom: 5px;">Review</h2>
+
+<mat-dialog-content class="mat-typography" appPerfectScrollbar>
+
+    <div class="content-form" [formGroup]="form">
+        <p fxLayout="row">{{ productName }}</p>
+        <div fxLayout="column">
+            <ul fxLayout="row" fxLayoutGap="6px" class="ranking">
+                <li>
+                    <i class="fa fa-star fa-2x" (click)="changeRating(1)" [ngClass]="{'active': rating >= 1}"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star fa-2x" (click)="changeRating(2)" [ngClass]="{'active': rating >= 2}"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star fa-2x" (click)="changeRating(3)" [ngClass]="{'active': rating >= 3}"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star fa-2x" (click)="changeRating(4)" [ngClass]="{'active': rating >= 4}"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star fa-2x" (click)="changeRating(5)" [ngClass]="{'active': rating >= 5}"></i>
+                </li>
+            </ul>
+        </div>
+        <div fxLayout="column">
+            <div fxLayout="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Tu valoración</mat-label>
+                    <textarea formControlName="review" rows="4" matInput required></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div *ngIf="isAuthenticated" fxLayout="column">
+            <div fxLayout="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput required formControlName="reviewer">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Correo</mat-label>
+                    <input matInput required formControlName="reviewer_email">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <div *ngIf="loading">
+        <mat-spinner [diameter]="25">
+        </mat-spinner>
+    </div>
+
+    <ng-container *ngIf="!loading">
+        <button mat-button (click)="close(false)">
+            Cerrar
+        </button>
+        <button mat-button cdkFocusInitial (click)="submitReview()" [disabled]="form.invalid">
+            Enviar
+        </button>
+    </ng-container>
+</mat-dialog-actions>

@@ -45,7 +45,7 @@ app-main {
                             flex: 1;
                             flex-direction: row;
                             width: 100%;
-                            overflow: hidden;
+                            overflow: auto;
 
                             > *:not(router-outlet):not(.ps__scrollbar-x-rail):not(.ps__scrollbar-y-rail) {
                                 display: flex;
@@ -71,5 +71,50 @@ app-main {
         max-width: 1200px;
         margin: 0 auto;
         @include mat-elevation(8);
+    }
+
+    .logo {
+        padding: 24px;
+
+        img {
+            width: 150px;
+        }
+    }
+
+    app-navigation {
+        width: 256px;
+        min-width: 256px;
+        max-width: 256px;
+    
+        app-nav-group {
+            width: 100%;
+        }
+    }
+
+    .whatsapp-link {
+        position: absolute;
+        background-color: #00BB2D;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 25px;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none !important;
+        }
+
+        i {
+            width: 30px;
+            height: 30px;
+            font-size: 30px;
+            text-align: center;
+            color: white;
+        }
     }
 }

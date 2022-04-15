@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { AppMatSidenavHelperService } from '../services/app-mat-sidenav-helper.service';
 import { AppMatchMediaService } from '../services/app-match-media.service';
 import { MediaObserver } from '@angular/flex-layout';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Directive({
   selector: '[appMatSidenavHelper]'
@@ -27,7 +27,7 @@ export class AppMatSidenavHelperDirective implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.appMatSidenavService.setSidenav(this.id, this.matSidenav);
 
-    if (this.observableMedia.isActive(this.matIsLockedOpenBreakpoint)) {
+    if (this.observableMedia.isActive(this.matIsLockedOpenBreakpoint ?? '')) {
       this.isLockedOpen = true;
       this.matSidenav.mode = 'side';
       this.matSidenav.toggle(true);
@@ -38,7 +38,7 @@ export class AppMatSidenavHelperDirective implements OnInit, OnDestroy {
     }
 
     this.matchMediaSubscription = this.appMatchMedia.onMediaChange.subscribe(() => {
-      if (this.observableMedia.isActive(this.matIsLockedOpenBreakpoint)) {
+      if (this.observableMedia.isActive(this.matIsLockedOpenBreakpoint ?? '')) {
         this.isLockedOpen = true;
         this.matSidenav.mode = 'side';
         this.matSidenav.toggle(true);

@@ -1,0 +1,88 @@
+@import '../../scss/app';
+
+.item-order {
+    padding: 24px;
+    border-radius: 6px;
+    border: 2px solid #e6e9f1;
+
+    @include media-breakpoint-down('sm') {
+        flex-wrap: wrap;
+    }
+
+    &:hover, &.active {
+        background-color: #e6e9f1;
+    }
+
+    .header {
+        color: #515760;
+        font-weight: 500;
+    }
+
+    .value {
+        color: #585e65;
+    }
+
+    .number-order {
+        .number {
+            color: #0e2365;
+            font-weight: 500;
+        }
+    }
+
+    .description {
+        p {
+            margin-bottom: 0;
+
+            &.header {
+                margin-bottom: 1rem;
+            }
+
+            &.first-name {
+                font-weight: bold;
+            }
+
+            &.first-details, &.other-articles {
+                color: #585e65;
+                font-size: 11px;
+
+                .label {
+                    color: #a5a4b7;
+                }
+            }
+        }
+    }
+
+    .status {
+        .tag-status {
+            color: white;
+            padding: 3px 8px;
+            min-width: 100px;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 50px;
+
+            &.on-hold, 
+            &.pending, 
+            &.processing, 
+            &.shipment-approved, 
+            &.order-prepared,
+            &.oreder-sent,
+            &.order-delivered
+            {
+                background-color: #002593;
+            }
+
+            &.completed {
+                background-color: #00c1c0;
+            }
+
+            &.cancelled, &.failed {
+                background-color: #fb3101;
+            }
+
+            &.refunded {
+                background-color: #fb8201;
+            }
+        }
+    }
+}

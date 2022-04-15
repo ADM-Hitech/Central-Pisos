@@ -1,0 +1,174 @@
+@import '../../../../core/scss/app';
+
+app-content-contact {
+    .breadcrums {
+        background-color: #e5e9f2;
+        padding: 0 10%;
+    }
+    
+    .container {
+        width: 80%;
+        margin-top: 70px;
+        margin-bottom: 70px;
+
+        @include media-breakpoint-down('sm') {
+            width: 90%;
+        }
+    
+        .content-form {
+            h1 {
+                font-size: 40px;
+                color: mat-color($primary);
+                margin-bottom: 15px;
+                margin-top: 0;
+            }
+    
+            .color-require {
+                color: red;
+            }
+    
+            .form {
+                max-width: 500px;
+            }
+        }
+    
+        .content-contact {
+    
+            .general {
+                background-color: #e5e9f2;
+                padding: 24px;
+                border-radius: 8px;
+                max-width: 325px;
+
+                @include media-breakpoint-down('sm') {
+                    max-width: 100%;
+                }
+    
+                > p {
+                    font-size: 15px;
+                    font-weight: bold;
+                    margin-bottom: 15px;
+                }
+    
+                .icon {
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 20px;
+    
+                    mat-icon {
+                        color: white;
+                    }
+                }
+    
+                .widget {
+                    .text {
+                        display: flex;
+                        justify-content: center;
+                        flex-direction: column;
+    
+                        p {
+                            &:first-child {
+                                margin: 0;
+                                color: #84888d;
+                                font-weight: 200;
+                            }
+    
+                            &:last-child {
+                                margin: 0;
+                                font-weight: bold;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+    
+                .whatsapp {
+                    .icon {
+                        background-color: #00BB2D;
+    
+                        i {
+                            width: 26px;
+                            height: 26px;
+                            font-size: 26px;
+                            text-align: center;
+                            color: white;
+                        }
+                    }
+                }
+    
+                .email {
+                    .icon {
+                        background-color: #9AA8BB;
+                    }
+                }
+    
+                .schedule {
+                    .icon {
+                        background-color: #2f3c56;
+                    }
+                }
+    
+                .divider {
+                    width: 100%;
+                    margin: 24px 0;
+                }
+            }
+    
+            .social-network {
+                background-color: #e5e9f2;
+                padding: 24px;
+                border-radius: 8px;
+                margin-top: 24px;
+                max-width: 325px;
+
+                @include media-breakpoint-down('sm') {
+                    max-width: 100%;
+                }
+    
+                > p {
+                    font-size: 15px;
+                    font-weight: bold;
+                    margin-bottom: 15px;
+                }
+    
+                .icons {
+                    .icon {
+                        width: 40px;
+                        height: 40px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 20px;
+    
+                        &.facebook {
+                            background-color: #3b5998;
+                        }
+    
+                        &.instagram {
+                            background: #f09433; 
+                            background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+                            background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+                            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+                            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+                        }
+    
+                        &.twitter {
+                            background-color: #1DA1F2;
+                        }
+    
+                        i {
+                            width: 26px;
+                            height: 26px;
+                            font-size: 26px;
+                            text-align: center;
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

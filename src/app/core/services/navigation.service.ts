@@ -10,7 +10,7 @@ import { AppNavigationModel } from '../models/navigation.model';
 })
 export class NavigationService {
 
-  public onNavCollapseToogle: EventEmitter<MenuCollapseInterface | MenuGroupInterface | MenuIntemInterface> = new EventEmitter();
+  public onNavCollapseToogle: EventEmitter<(MenuCollapseInterface | MenuGroupInterface)> = new EventEmitter();
   public onNavCollapseToogled = new EventEmitter();
   public onNavigationModelChange: BehaviorSubject<(MenuGroupInterface | MenuCollapseInterface | MenuIntemInterface)[]> =
     new BehaviorSubject([]);

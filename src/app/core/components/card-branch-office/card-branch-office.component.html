@@ -1,0 +1,27 @@
+<div class="card-branch-office" fxLayout="column">
+    <div class="content-city" fxLayout="row" fxLayoutAlign="space-between center">
+        <p>{{ state }}</p>
+        <span *ngIf="isPrincipal">MATRIZ</span>
+    </div>
+    <div fxLayout="row" class="content-info">
+        <mat-icon>room</mat-icon>
+        <div fxLayout="column">
+            <p>Dirección</p>
+            <p class="address">
+                {{ address }}
+            </p>
+        </div>
+    </div>
+    <div fxLayout="row" class="content-info mt-12">
+        <mat-icon>phone</mat-icon>
+        <div fxLayout="column">
+            <p>Teléfonos</p>
+            <p>
+                {{ telephonesSplit }}
+            </p>
+        </div>
+    </div>
+    <div fxLayout="row">
+        <button class="mt-24" mat-flat-button color="primary" (click)="pressButton()">VER MAPA</button>
+    </div>
+</div>

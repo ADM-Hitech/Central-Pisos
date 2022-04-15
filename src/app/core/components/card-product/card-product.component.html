@@ -1,0 +1,27 @@
+<div class="card-product" [ngClass]="{'border': withBorder}" fxLayout="column">
+    <div class="content-image">
+        <img loading="lazy" [src]="product.firtsImage" alt="">
+        <span class="discount" *ngIf="withDiscount">-{{ product.porcentDiscount }}%</span>
+    </div>
+    <div class="content-info">
+        <span class="category">{{ category }}</span>
+        <span class="name">{{ product.name }}</span>
+        <span class="description">
+            {{ product.description }}
+        </span>
+    </div>
+    <div class="content-price">
+        <div class="prices">
+            <span class="saleprice">{{ product.price | currency }}</span>
+            <span class="withdiscount" *ngIf="withDiscount"><del>{{ product.regularPrice | currency }}</del></span>
+        </div>
+        <div class="buttons" fxLayout="row">
+            <div class="add-to-card" fxFlex="60" (click)="addToCart()">
+                AÑADIR A CARRITO
+            </div>
+            <div class="view-more" fxFlex="40" (click)="details(product.id)">
+                VER MÁS
+            </div>
+        </div>
+    </div>
+</div>

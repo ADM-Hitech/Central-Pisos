@@ -1,0 +1,58 @@
+<div class="content-pay">
+    <h1>Método de pago</h1>
+    <span class="divider"></span>
+
+    <div class="content-form">
+        <div class="content-type-pay mb-24 mt-24">
+            <mat-radio-group fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="24px" [(ngModel)]="metodPay">
+                <div class="credit-card option-pay" fxLayout="column">
+                    <p>Tarjeta de crédito o débito</p>
+                    <div class="content-logo" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                        <mat-radio-button [value]="1">
+                            <div class="images" fxLayout="row" fxLayoutGap="12px">
+                                <img src="assets/images/icons/ico-compra-visa.svg" width="65px" alt="">
+                                <img src="assets/images/icons/ico-compra-mastercard.svg" width="65px" alt="">
+                                <img src="assets/images/icons/ico-compra-amex.svg" width="65px" alt="">
+                            </div>
+                        </mat-radio-button>
+                    </div>
+                </div>
+                <!--<div class="paypal option-pay" fxLayout="column">
+                    <p>PayPal</p>
+                    <div class="content-logo" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-radio-button [value]="2">
+                            <div class="images">
+                                <img src="assets/images/icons/ico-compra-amex.svg" width="65px" alt="">
+                            </div>
+                        </mat-radio-button>
+                    </div>
+                </div>-->
+                <div class="oxxo option-pay" fxLayout="column" *ngIf="totalPay < 10000">
+                    <p>Oxxo(depósito)</p>
+                    <div class="content-logo" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-radio-button [value]="3">
+                            <div class="images">
+                                <img src="assets/images/icons/ico-compra-oxxo.svg" width="65px" alt="">
+                            </div>
+                        </mat-radio-button>
+                    </div>
+                </div>
+            </mat-radio-group>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div [ngSwitch]="metodPay" class="switch-content">
+            <app-pay-for-credit-card *ngSwitchCase="1" [form]="formCard"></app-pay-for-credit-card>
+            <app-for-paypal *ngSwitchCase="2"></app-for-paypal>
+            <app-pay-for-oxxo *ngSwitchDefault></app-pay-for-oxxo>
+        </div>
+
+        <div class="content-button">
+            <div *ngIf="loading" fxLayout="row" fxLayoutAlign="center center">
+                <mat-spinner [diameter]="25">
+                </mat-spinner>
+            </div>
+            <button *ngIf="!loading" mat-flat-button color="primary" [disabled]="validForm" (click)="processPay()">PAGAR</button>
+        </div>
+    </div>
+</div>

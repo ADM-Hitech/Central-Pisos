@@ -1,6 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, HostBinding, Inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ISettingsApp } from '../core/models/settings-app';
 import { ConfigService } from '../core/services/config.service';
@@ -15,6 +16,7 @@ export class AppMainComponent implements OnDestroy {
 
     public onSettingsChanged: Subscription;
     public appSettings: ISettingsApp;
+    private navigationSubscription: Subscription;
     @HostBinding('attr.app-layout-mode') layoutMode;
 
     constructor(
@@ -22,6 +24,7 @@ export class AppMainComponent implements OnDestroy {
         private elementRef: ElementRef,
         private appConfig: ConfigService,
         private platform: Platform,
+        private router: Router,
         @Inject(DOCUMENT) private document: any
     ) {
         this.onSettingsChanged = this.appConfig.onSettingsChanged.subscribe((newSettings) => {
@@ -32,10 +35,17 @@ export class AppMainComponent implements OnDestroy {
         if (this.platform.ANDROID || this.platform.IOS) {
             this.document.body.className += ' is-mobile';
         }
+
+        this.navigationSubscription = this.router.events.subscribe((e: any) => {
+            if (e instanceof NavigationEnd) {
+                document.getElementById('content-router').scroll(0, 0);
+            }
+        });
     }
 
     ngOnDestroy(): void {
         this.onSettingsChanged.unsubscribe();
+        this.navigationSubscription.unsubscribe();
     }
 
     addClass(className: string): void {

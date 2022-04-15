@@ -1,0 +1,69 @@
+<div class="content" fxLayout="column" appPerfectScrollbar>
+    <app-header-pages namePage="Nosotros" image="assets/images/backgrounds/banner-top-nosotros.png"></app-header-pages>
+
+    <div class="breadcrums pt-12 pb-12" fxLayout="row" fxLayoutGap="8px">
+        <span class="cursor-pointer" [routerLink]="['/']">Inicio</span>
+        <span>/</span>
+        <span>Nosotros</span>
+    </div>
+    <div class="content-description" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="center start" fxLayoutGap="40px">
+        <div class="description" fxFlex="50">
+            <h2>Central de Pisos</h2>
+            <span class="divider"></span>
+            <p>
+                Somos una empresa multimarca especializada en la comercialización de pisos, azulejos, muebles para baño, llaves, calentadores, tinas y accesorios para baño; además dentro de nuestro catálogo contamos con una gran variedad de productos complementarios de acabados para la construcción de las mejores marcas del mercado. 
+            </p>
+        </div>
+        <div class="video" fxFlex="100" fxFlex.gt-xs="50" #contvideo>
+            <video src="assets/videos/nosotros.mp4" controls #video></video>
+        </div>
+    </div>
+    <div class="content-mission-vission" fxLayout.gt-xs="row" fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="30px">
+        <div class="row" fxLayout="column" fxFlex="50">
+            <div class="content-img">
+                <div class="bg-for-img"></div>
+                <img src="assets/images/nosotros-mision.png" alt="">
+            </div>
+            <div class="content-text">
+                <h3 class="mt-24">Visión</h3>
+                <span class="divider mt-12 mb-12"></span>
+                <p >
+                    Ser la empresa más atractiva en servicio, en surtido y en calidad de productos. 
+                </p>
+            </div>
+        </div>
+        <div class="row" fxLayout="column" fxFlex="50">
+            <div class="content-text">
+                <h3>Misión</h3>
+                <span class="divider mt-12 mb-12"></span>
+                <p>
+                    Ofrecer a nuestros clientes los mejores materiales de acabados para la construcción a un precio justo y con entregas express; siempre enfocados en brindar la mejor experiencia de compra.
+                </p>
+            </div>
+            <div class="content-img vision">
+                <div class="bg-for-img"></div>
+                <img src="assets/images/nosotros-vision.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="content-testimoniales">
+        <h2>Testimoniales</h2>
+        <span class="divider mt-12 mb-24"></span>
+        <div class="carousel-testimonios">
+            <ngb-carousel>
+                <ng-template ngbSlide>
+                    <p class="mb-36">
+                        Hice mi primera compra online en esta página y fue increíble ya que el tiempo de entrega fue de solo 2 días y el material llego en buen estado y sus repartidores son muy amables. Además, su página web se me hizo muy completa ya que tiene una gran variedad de productos, cien por ciento la recomiendo.
+                    </p>
+                    <p class="mb-48 autor">JUAN</p>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <p class="mb-36">
+                        Compré un calentador de la marca delta y al principio estaba nervioso porque pensé que se iban a tardar en entregármelo, pero me llego al día siguiente de mi compra y quedo sorprendido por el tiempo de entrega, además de que me ofrecieron en mi compra del calentador la instalación gratis me encantó. Súper buen servicio.
+                    </p>
+                    <p class="mb-48 autor">MARTHA</p>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+</div>

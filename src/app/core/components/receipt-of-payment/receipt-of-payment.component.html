@@ -1,0 +1,36 @@
+<div style="font-family: 'arial';border: 2px solid #e8e8e8;border-radius: 5px;padding: 0 24px;">
+    <p style="margin-top: 7px;font-size: 11px;color: #b0b0b0;text-align: center;">FICHA DIGITAL TOMA FOTO O IMPRIME</p>
+    <div style="margin-top: 36px;display: flex;justify-content: center;align-items: start;">
+        <div style="position: relative;width: 202px;">
+            <img style="width: 150px;position: absolute;top: -40px;" src="https://centraldepisos.com.mx/assets/images/icons/ico-pago-oxxo.svg" alt="">
+        </div>
+        <div style="margin-left: 24px;">
+            <p style="margin: 0;">MONTO A PAGAR</p>
+            <p style="margin: 8px 0px;font-weight: bold;font-size: 32px;">{{ totalPay | currency }}</p>
+            <p style="margin: 0;font-size: 11px;color: #c1bfbf;"> OXXO cobrará una comisión adicional al momento de
+                realizar el pago. </p>
+        </div>
+    </div>
+    <div style="margin-top: 24px;">
+        <p style="font-weight: bold;color: gray;">REFERENCIA</p>
+        <div style="padding: 10px;border: 2px solid #e8e8e8;border-radius: 5px;">
+            <p style="margin: 0;font-size: 26px;font-weight: bold;text-align: center;"> {{ reference }} </p>
+        </div>
+    </div>
+    <div class="divider" style="margin: 36px 0;width: 100%;height: 2px;background-color: #e8e8e8;"></div>
+    <div>
+        <p style="font-weight: bold;color: gray;">INSTRUCCIONES</p>
+        <ol style="padding: 0 16px;">
+            <li style="margin-bottom: 8px;">Acude al OXXO más cercano.</li>
+            <li style="margin-bottom: 8px;">Tienes <b>24 horas</b> para realizar el pago.</li>
+            <li style="margin-bottom: 8px;">Indica en caja que quieres realizar un pago de OXXOPay</li>
+            <li style="margin-bottom: 8px;">Dicta al cajero el número de referencia.</li>
+            <li> Al confirmar tu pago, el cajero te entregará un comprobante impreso. Conserva el comprobante de pago.
+            </li>
+        </ol>
+    </div>
+    <div style="display: flex;justify-content: center;margin-bottom: 36px;margin-top: 36px;">
+        <button onclick="window.print()"
+            style="border: 1px solid;padding: 12px 36px;color: green;background-color: white;border-radius: 5px;cursor: pointer;">IMPRIMIR</button>
+    </div>
+</div>

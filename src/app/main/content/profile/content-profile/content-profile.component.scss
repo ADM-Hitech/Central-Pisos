@@ -1,0 +1,41 @@
+@import '../../../../core/scss/app';
+
+.breadcrums {
+    background-color: #e5e9f2;
+    padding: 0 10%;
+}
+
+.container {
+    margin: 60px auto;
+    margin-top: 30px;
+
+    .title {
+        color: mat-color($primary);
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .content-menu {
+        mat-list-item  {
+            background-color: rgb(243, 245, 249);
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+
+            .mat-list-item-content {
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .mat-icon {
+                color: #424242;
+            }
+
+            &.router-link-active {
+                background-color: #9ba8bd;
+                color: white;
+            }
+        }
+    }
+}

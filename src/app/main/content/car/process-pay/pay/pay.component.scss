@@ -1,0 +1,56 @@
+@import '../../../../../core/scss/app';
+
+app-pay {
+    .content-pay {
+
+        width: 90%;
+        margin-left: 10%;
+
+        @include media-breakpoint-down('xs') {
+            margin-left: 0;
+            width: 100%;
+        } 
+    
+        h1 {
+            color: mat-color($primary);
+        }
+    
+        .content-form {
+            mat-form-field {
+                width: 100%;
+            }
+    
+            .content-type-pay {
+
+                .option-pay {
+                    border: 2px solid #edecf0;
+                    padding: 12px;
+                    border-radius: 5px;
+            
+                    p {
+                        margin-bottom: 0;
+                    }
+            
+                    .mat-radio-label {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+    
+            .switch-content {    
+                @include media-breakpoint-up('xl') {
+                    min-width: 765px;
+                }
+            }
+    
+            .content-button {
+                button {
+                    width: 100%;
+                    padding: 10px;
+                    font-weight: 300;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

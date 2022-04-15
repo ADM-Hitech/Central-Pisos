@@ -10,6 +10,7 @@ import { AppMainModule } from './main/main.module';
 import { ConfigService } from './core/services/config.service';
 import { NavigationService } from './core/services/navigation.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,11 @@ import { JwtHelperService } from '@auth0/angular-jwt';
     ConfigService,
     NavigationService,
     JwtHelperService,
-    NavigationService
+    NavigationService,
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'es-MX'
+    }
   ],
   bootstrap: [AppComponent]
 })

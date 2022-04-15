@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MenuCollapseInterface } from '../../models/menu-collapse.interface';
 import { MenuGroupInterface } from '../../models/menu-group.interface';
@@ -11,7 +11,7 @@ import { NavigationService } from '../../services/navigation.service';
   styleUrls: ['./navigation.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnDestroy {
 
   public navigationModel: (MenuGroupInterface | MenuCollapseInterface | MenuIntemInterface)[];
   public navigationModelChangeSubscription: Subscription;
@@ -22,11 +22,10 @@ export class NavigationComponent implements OnInit {
   constructor(private navigationService: NavigationService) {
     this.navigationModelChangeSubscription = this.navigationService.onNavigationModelChange.subscribe((navigationModel) => {
       this.navigationModel = navigationModel;
-      console.log(this.navigationModel);
     });
   }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
     this.navigationModelChangeSubscription.unsubscribe();
   }
 

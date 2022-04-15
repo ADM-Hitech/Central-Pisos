@@ -1,0 +1,211 @@
+@import '../../../../core/scss/app';
+
+.content {
+    background-color: white;
+
+    .breadcrums {
+        background-color: #e5e9f2;
+        padding: 0 10%;
+    }
+
+    .title {
+        color: mat-color($primary);
+        h1 {
+            font-size: 40px;
+            margin-top: 0;
+        }
+    }
+
+    .content-list-products {
+        @include media-breakpoint-down('sm') {
+            width: 100%;
+        }
+    }
+
+    table {
+        width: 100%;
+
+        tbody {
+            td {
+                padding-top: 24px;
+                padding-bottom: 24px;
+            }
+        }
+
+        .product {
+            .img {
+                img {
+                    max-width: 130px;
+                }
+            }
+
+            .info {
+                p {
+                    margin: 0;
+
+                    &.name {
+                        font-weight: 500;
+                        font-size: 18px;
+                        margin-bottom: 8px;
+                    }
+
+                    .label {
+                        color: #a7a8b3;
+                        font-weight: 300;
+                    }
+
+                    .sku, .color, .size {
+                        color: #595b5d;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+
+        .content-prices {
+            .prices {
+                span {
+                    &.withdiscount {
+                        font-size: 15px;
+                        font-weight: 500;
+                        color: #a9b4c5;
+                    }
+        
+                    &.saleprice {
+                        font-weight: 500;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+
+    .continue-buy {
+        a {
+            font-size: 13px;
+            color: #58596b;
+        }
+    }
+
+    .content-totals {
+
+        .content-bg {
+            padding: 24px;
+            background-color: #f3f5f9;
+            border-radius: 8px;
+
+            h3 {
+                font-size: 17px;
+                margin-bottom: 36px;
+            }
+    
+            .subtotal {
+                font-size: 13px;
+    
+                mat-label {
+                    font-weight: 300;
+                    color: #595c64;
+                }
+    
+                .value {
+                    font-weight: 500;
+                }
+            }
+    
+            .shipping {
+                font-size: 13px;
+    
+                mat-label {
+                    font-weight: 300;
+                    color: #595c64;
+                }
+    
+                .extra {
+                    font-size: 10px;
+                    color: #595c64;
+    
+                    a {
+                        cursor: pointer;
+                    }
+                }
+    
+                .value {
+                    font-weight: 500;
+                }
+
+                .mat-form-field-wrapper {
+                    padding: 0;
+                }
+
+                .mat-flat-button {
+                    padding: 0;
+                    font-size: 10px;
+                    max-width: 70px;
+                }
+            }
+    
+            .total {
+                font-size: 13px;
+                
+                mat-label {
+                    font-weight: 300;
+                    color: #595c64;
+                }
+    
+                .extra {
+                    font-size: 10px;
+                    color: #595c64;
+                }
+    
+                .value {
+                    font-weight: 500;
+                }
+            }
+    
+            .mat-divider {
+                margin: 14px 0;
+            }
+    
+            button {
+                width: 100%;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        }
+
+        .content-info-extra {
+            .shipping {
+                margin: 12px 0;
+                .icon {
+                    i {
+                        width: 24px;
+                        height: 24px;
+                        font-size: 24px;
+                        text-align: center;
+                        color: #2f3d57;
+                    }
+                }
+    
+                .text {
+                    font-size: 13px;
+                    color: #565d6f;
+                    font-weight: 300;
+                }
+            }
+
+            .pay-security {
+                margin-bottom: 24px;
+    
+                mat-icon {
+                    color: #2f3d57;
+                }
+    
+                .text {
+                    font-size: 13px;
+                    color: #565d6f;
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+}

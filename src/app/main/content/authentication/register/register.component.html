@@ -1,0 +1,52 @@
+<div class="content" fxLayout="column" appPerfectScrollbar>
+    <div class="breadcrums pt-12 pb-12" fxLayout="row" fxLayoutGap="8px">
+        <span>Inicio</span>
+        <span>/</span>
+        <span>Registrarse</span>
+    </div>
+
+    <div class="container" fxLayout="row" fxLayoutAlign="center start">
+        <div class="form" fxLayout="column" [formGroup]="form">
+          <div class="title mb-24" fxLayout="column">
+            <h1>Crear una cuenta</h1>
+            <span class="divider"></span>
+          </div>
+    
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput required formControlName="first_name">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input matInput required formControlName="last_name">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput required formControlName="email">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre de Usuario</mat-label>
+            <input matInput required formControlName="username">
+          </mat-form-field>
+    
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput required formControlName="password" type="{{ showpass ? 'text' : 'password' }}">
+            <mat-icon class="cursor-pointer" matSuffix (click)="showAndHidePassword()">visibility</mat-icon>
+          </mat-form-field>
+    
+          <div class="links" fxLayout="row" fxLayoutAlign="space-between center">
+            <p>Tu contraseña debe contener un mínimo de 8 caracteres con al menos un número, una letra mayuscula y un caracter especial(+,_,-,@,$,&).</p>
+          </div>
+    
+          <div class="content-button mt-24">
+            <button mat-flat-button color="primary" (click)="submit()" [disabled]="loading || form.invalid">
+              REGISTRARME
+            </button>
+          </div>
+        </div>
+      </div>
+</div>

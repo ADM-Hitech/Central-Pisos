@@ -1,0 +1,76 @@
+<div class="content" fxLayout="column">
+    <h2 class="mb-24">Detalles de mi cuenta</h2>
+    <mat-progress-bar
+        mode="indeterminate" *ngIf="loadingData">
+    </mat-progress-bar>
+    <mat-divider></mat-divider>
+    <div class="form mt-24" fxLayout="column" [formGroup]="form">
+        <div fxLayout="row wrap" fxLayoutAlign="space-between start">
+            <div fxFlex="100" fxFlex.gt-sm="30" >
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput required formControlName="first_name">
+                    <mat-icon matSuffix>done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput required formControlName="last_name">
+                    <mat-icon matSuffix>done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput required formControlName="email">
+                    <mat-icon matSuffix>done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="birth_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Género</mat-label>
+                    <mat-select required formControlName="gender">
+                      <mat-option value="Hombre">
+                        Hombre
+                      </mat-option>
+                      <mat-option value="Mujer">
+                        Mujer
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Télefono celular</mat-label>
+                    <input matInput required formControlName="telephone">
+                    <mat-icon matSuffix>done</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="content-button mt-12 mb-24">
+            <button fxFill mat-flat-button color="primary" [disabled]="loading || form.invalid" (click)="submit()">
+              ACTUALIZAR MI INFORMACIÓN
+            </button>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="check" fxLayout="row" fxLayoutAlign="start center">
+                <mat-checkbox>Acepto los</mat-checkbox>
+                <u>términos y condiciones.</u>
+            </div>
+            <div class="cancel-my-account">
+                <p>Si quieres dar de baja tu cuenta en Central de Pisos haz click <a href="#">aquí</a></p>
+            </div>
+        </div>
+    </div>
+</div>

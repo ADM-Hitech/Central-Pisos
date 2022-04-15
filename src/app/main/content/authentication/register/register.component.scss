@@ -1,0 +1,36 @@
+@import '../../../../core/scss/app';
+
+.breadcrums {
+    background-color: #e5e9f2;
+    padding: 0 10%;
+}
+
+.container {
+    margin: 24px auto;
+    margin-bottom: 48px;
+
+    .form {
+        min-width: 350px;
+        max-width: 450px;
+
+        .title {
+            color: mat-color($primary);
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .links {
+            a {
+                color: #63646c;
+            }
+        }
+
+        .content-button {
+            button {
+                width: 100%;
+                font-weight: 200;
+            }
+        }
+    }
+}

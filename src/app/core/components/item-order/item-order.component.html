@@ -1,0 +1,28 @@
+<div class="item-order" [ngClass]="{'active': active}" fxLayout="row" fxLayoutAlign="space-between start">
+    <div class="number-order" fxLayout="column">
+        <p class="header">Número de orden</p>
+        <p class="number cursor-pointer" (click)="goToDetail()">{{ folio }}</p>
+    </div>
+    <div class="description" fxLayout="column" *ngIf="!active">
+        <p class="header">Descripción</p>
+        <p class="first-name">{{ firstProduct.name }}</p>
+        <p class="first-details">
+            <span class="label">SKU:</span> {{ firstProduct.sku }},
+            <span class="label">Color:</span> {{ color | uppercase }},
+            <span class="label">Tamaño:</span> {{ size | uppercase }}
+        </p>
+        <p class="other-articles" *ngIf="moreProducts > 0">{{ moreProducts }} artículo{{ moreProducts > 0 ? 's' : ''}} más.</p>
+    </div>
+    <div class="date" fxLayout="column">
+        <p class="header">Fecha</p>
+        <p class="value">{{ order.dateCreated | date }}</p>
+    </div>
+    <div class="status">
+        <p class="header">Estatus</p>
+        <div class="tag-status" [class]="order.status">{{ status }}</div>
+    </div>
+    <div class="total">
+        <p class="header">Total</p>
+        <p class="value">{{ order.total | currency }}</p>
+    </div>
+</div>

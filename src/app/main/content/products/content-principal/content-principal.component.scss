@@ -1,0 +1,120 @@
+@import '../../../../core/scss/app';
+
+app-content-principal {
+    .breadcrums {
+        background-color: #e5e9f2;
+        padding: 0 10%;
+    }
+    
+    .container {
+        width: 80%;
+        margin-top: 24px;
+        margin-bottom: 70px;
+    
+        @include media-breakpoint-down('sm') {
+            width: 100%;
+        }
+    
+        .title {
+            h1 {
+                font-size: 40px;
+                color: mat-color($primary);
+                margin-bottom: 15px;
+                margin-top: 0;
+            }
+        }
+    
+        .number-per-page {
+            mat-label {
+                font-weight: 600;
+                /*margin-bottom: 12px;*/
+                font-size: 13px;
+                color: #555e6f;
+            }
+    
+            .per-page {
+                max-width: 70px;
+            }
+    
+            .mat-form-field-infix {
+                padding: 11px 0 5px 0;
+                border-top: 0;
+    
+                .mat-select-arrow-wrapper {
+                    transform: translateY(0%);
+                }
+            }
+        }
+    
+        .content-categories {
+            padding: 24px;
+    
+            p {
+                font-size: 13px;
+                margin: 12px 0;
+                color: #535e70;
+                font-weight: 300;
+    
+                &.title {
+                    font-weight: bold;
+                    font-size: 18px;
+                    margin-bottom: 24px;
+                }
+    
+                &.link-category {
+                    cursor: pointer;
+                }
+            }
+        }
+    
+        .content-products {
+            app-card-product {
+                width: 250px;
+    
+                @include media-breakpoint-down('sm') {
+                    width: 100%;
+                }
+            }
+        }
+    
+        .pagination {
+            color: #686f80;
+            .pagination-page {
+                max-width: 70px;
+    
+                .mat-form-field-wrapper {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+    
+            .mat-form-field-infix {
+                padding: 11px 0 5px 0;
+                border-top: 0;
+    
+                .mat-select-arrow-wrapper {
+                    transform: translateY(0%);
+                }
+            }
+        }
+    
+        .mat-form-field-infix {
+            padding: 11px 0 5px 0;
+            border-top: 0;
+            width: auto;
+        
+            .mat-select-arrow-wrapper {
+                transform: translateY(0%);
+            }
+        }
+        
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+        
+        .mat-select-value {
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+}

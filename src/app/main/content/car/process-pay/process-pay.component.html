@@ -1,0 +1,152 @@
+<div class="content" fxLayout="column" appPerfectScrollbar>
+    <div class="content-steps pt-12 pb-12">
+        <div class="pl-10" #contentSteps fxFlex="100" fxFlex.gt-sm="60" fxLayout="row" fxLayoutAlign="center center">
+            <div class="step-one step" [ngClass]="{'active': currentStep == 1, 'complete': currentStep > 1}"
+                fxLayout="column" fxFlex="33" fxLayoutAlign="center center">
+                <span class="label">Envío</span>
+                <div class="circle">
+                    <mat-icon>done</mat-icon>
+                </div>
+                <span class="line"></span>
+            </div>
+            <div class="step-two step" [ngClass]="{'active': currentStep == 2, 'complete': currentStep > 2}"
+                fxLayout="column" fxFlex="33" fxLayoutAlign="center center">
+                <span class="label">Pago</span>
+                <div class="circle">
+                    <mat-icon>done</mat-icon>
+                </div>
+                <span class="line"></span>
+            </div>
+            <div class="step-three step" [ngClass]="{'active': currentStep == 3}" fxLayout="column" fxFlex="33"
+                fxLayoutAlign="center center">
+                <span class="label">Listo</span>
+                <div class="circle">
+                    <mat-icon>done</mat-icon>
+                </div>
+                <span class="line"></span>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="loading" class="mt-24" fxLayout="row" fxLayoutAlign="center center">
+        <mat-spinner [diameter]="35"></mat-spinner>
+    </div>
+    <div class="content-grid" *ngIf="!loading">
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="center start">
+            <div class="content-form pr-24 pb-48" fxFlex="100" fxFlex.gt-sm="60" fxLayoutAlign="end start">
+                <ng-container [ngSwitch]="currentStep">
+                    <app-shipping 
+                        *ngSwitchCase="1"
+                        [form]="form"
+                        [cupons]="cupons"
+                        [listStates]="listStates"
+                        (onChangeRequireInvoice)="changeRequiredInvoice($event)"
+                        (onContinue)="changeStep($event)">
+                    </app-shipping>
+                    <app-pay 
+                        *ngSwitchCase="2" 
+                        [ngStyle]="{'min-width': minWidthForm + 'px'}" 
+                        [formShipping]="form"
+                        [cupons]="cupons"
+                        [totalPay]="totalPay"
+                        [metodPay]="metodPay"
+                        (onCompletePay)="completePay($event)"></app-pay>
+                    <app-ready *ngSwitchDefault [order]="order" (onPrint)="showReceiptOfPayment()"></app-ready>
+                </ng-container>
+            </div>
+            <div class="content-resume-car pl-24" fxFlex="100" fxFlex.gt-sm="40" fxLayoutAlign="start start">
+                <div class="cnt">
+                <h3>Resumen de compra</h3>
+                <div class="list-products mt-24 mb-24" appPerfectScrollbar fxLayout="column" fxLayoutGap="24px">
+                    <ng-container *ngIf="currentStep <= 2">
+                        <div *ngFor="let product of products" class="product" fxLayout="row" fxLayoutGap="24px"
+                        fxLayoutAlign="start start">
+                        <div class="img">
+                            <img [src]="product.firtsImage">
+                            <span class="quantity">{{ product.quantityCart }}</span>
+                        </div>
+                        <div fxFlex fxLayout="row" fxLayoutAlign="space-between start">
+                            <div class="info" fxLayout="column">
+                                <p class="name">{{ product.name }}</p>
+                                <p class="sku"><span class="label">SKU:</span> {{ product.sku }}</p>
+                                <p class="color"><span class="label">Color:</span> {{ product.firstColor?.label }}</p>
+                                <p class="size"><span class="label">Tamaño:</span> {{ product.dimension }}</p>
+                            </div>
+                            <div class="total pr-12">
+                                <span>{{ product.price | currency }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="currentStep > 2">
+                        <div *ngFor="let product of order.lineItems" class="product" fxLayout="row" fxLayoutGap="24px"
+                        fxLayoutAlign="start start">
+                        <div class="img">
+                            <img [src]="product.image">
+                            <span class="quantity">{{ product.quantity }}</span>
+                        </div>
+                        <div fxFlex fxLayout="row" fxLayoutAlign="space-between start">
+                            <div class="info" fxLayout="column">
+                                <p class="name">{{ product.name }}</p>
+                                <p class="sku"><span class="label">SKU:</span> {{ product.sku }}</p>
+                                <p class="color"><span class="label">Color:</span> {{ product.color?.label }}</p>
+                                <p class="size"><span class="label">Tamaño:</span> {{ product.size }}</p>
+                            </div>
+                            <div class="total pr-12">
+                                <span>{{ product.price | currency }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    </ng-container>
+                </div>
+
+                <ng-container *ngIf="currentStep <= 2">
+                    <mat-divider></mat-divider>
+                    <div class="cupon mb-12" fxLayout="column">
+                        <mat-label class="mt-24 mb-12">Cupón de descuento</mat-label>
+                        <div class="input-cupon" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start center">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Ingresar código:</mat-label>
+                                <input matInput placeholder="ejemplo: 23" [(ngModel)]="cupon">
+                            </mat-form-field>
+                            <button mat-flat-button color="primary" (click)="applyCupon()"
+                                [disabled]="loadingCupon || cupon == ''">
+                                APLICAR
+                            </button>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="sub-total mt-24 mb-24" fxLayout="column" fxLayoutGap="12px">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <mat-label>Sub total</mat-label>
+                            <mat-label>{{ subTotal | currency }}</mat-label>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <mat-label>Descuento</mat-label>
+                            <mat-label>{{ discountByCupons | currency }}</mat-label>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="cupons"
+                            *ngFor="let cupon of cupons; let i = index;">
+                            <mat-label>{{ cupon.code | uppercase }}</mat-label>
+                            <mat-icon class="cursor-pointer" (click)="removeCupon(i)">delete</mat-icon>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <mat-label>Costo de envío</mat-label>
+                            <mat-label *ngIf="costShipping <= 0"> {{ costShipping == -1 ? '-' : 'GRATIS' }}</mat-label>
+                            <mat-label *ngIf="costShipping > 0">{{ costShipping | currency }}</mat-label>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="total mt-24 mb-24" fxLayout="column" fxLayoutGap="12px">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <mat-label>Total</mat-label>
+                            <mat-label><span>MXN</span>{{ totalPay | currency }}</mat-label>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

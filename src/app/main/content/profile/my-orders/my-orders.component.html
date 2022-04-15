@@ -1,0 +1,10 @@
+<div class="content" fxLayout="column">
+    <h2 class="mb-24">Mis pedidos</h2>
+    <mat-divider></mat-divider>
+    <div *ngIf="loading" fxFill class="mt-24" fxLayout="row" fxLayoutAlign="center center">
+        <mat-spinner [diameter]="35"></mat-spinner>
+    </div>
+    <div class="content-orders mt-24" fxLayout="column" fxLayoutGap="24px" *ngIf="!loading">
+        <app-item-order *ngFor="let order of listOrder" [order]="order"></app-item-order>
+    </div>
+</div>

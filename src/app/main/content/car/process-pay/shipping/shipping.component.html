@@ -1,0 +1,294 @@
+<div class="content-shipping" [formGroup]="form">
+    <h1>Direccción de envío</h1>
+    <span class="divider"></span>
+
+    <div class="form mt-24">
+        <ng-container formGroupName="shipping">
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+        
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Código postal</mat-label>
+                        <input matInput placeholder="00000" required formControlName="postcode">
+                        <mat-icon matSuffix *ngIf="isValidForShipping('postcode')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+    
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Estado</mat-label>
+                        <mat-select formControlName="state">
+                            <mat-option *ngFor="let state of listStates" [value]="state.code">
+                                {{ state.value }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-icon matSuffix *ngIf="isValidForShipping('state')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Delegación / Municipio</mat-label>
+                        <input matInput required formControlName="city">
+                        <mat-icon matSuffix *ngIf="isValidForShipping('city')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+    
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Colonia</mat-label>
+                        <input matInput required required formControlName="colony">
+                        <mat-icon matSuffix *ngIf="isValidForShipping('colony')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="juan" required formControlName="first_name">
+                        <mat-icon matSuffix *ngIf="isValidForShipping('first_name')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+    
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Apellidos</mat-label>
+                        <input matInput placeholder="rivera" required formControlName="last_name">
+                        <mat-icon matSuffix *ngIf="isValidForShipping('last_name')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Calle</mat-label>
+                        <input matInput placeholder="av. calle" required formControlName="address_1">
+                        <mat-icon matSuffix *ngIf="isValidForShipping('address_1')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+    
+                <div fxFlex="50">
+                    <div>
+                        <mat-form-field appearance="outline" style="width: calc(50% - 24px);margin-right: 24px;">
+                            <mat-label>Número exterior</mat-label>
+                            <input matInput required formControlName="number_ext">
+                            <mat-icon matSuffix *ngIf="isValidForShipping('number_ext')">done</mat-icon>
+                            
+                        </mat-form-field>
+    
+                        <mat-form-field appearance="outline" style="width: 50%;">
+                            <mat-label>Número interior</mat-label>
+                            <input matInput formControlName="number_int">
+                            <mat-icon matSuffix *ngIf="isValidForShipping('number_int')">done</mat-icon>
+                            
+                        </mat-form-field>
+    
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Correo electrónico</mat-label>
+                        <input matInput placeholder="ejemplo@dominio.com" required formControlName="email">
+                        <mat-icon matSuffix *ngIf="isValidForShipping('email')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+    
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Teléfono (10 digitos)</mat-label>
+                        <input matInput placeholder="0000000000" required formControlName="phone">
+                        <mat-icon matSuffix *ngIf="isValidForShipping('phone')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Persona que recibirá el pedido</mat-label>
+                        <input matInput placeholder="Juan Rivera" formControlName="receiver">
+                        <mat-icon matSuffix *ngIf="isValidForShipping('receiver')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+    
+                <div fxFlex="50">
+                </div>
+            </div>
+            <div fxLayout="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Referencias</mat-label>
+                    <textarea matInput 
+                        placeholder="Comparte referencias para que sea más fácil llegar a tu dirección"
+                        formControlName="reference"></textarea>
+                    <mat-icon matSuffix *ngIf="isValidForShipping('reference')">done</mat-icon>
+                    
+                </mat-form-field>
+            </div>
+        </ng-container>
+
+        <mat-divider></mat-divider>
+
+        <div class="mt-24 mb-12" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+            <p>¿Requieres facturar tu pedido?</p>
+            <mat-radio-group aria-label="¿Requieres facturar tu pedido?" 
+                fxLayout="row" 
+                fxLayoutGap="12px"
+                formControlName="required_invoice"
+                (change)="changeRequireInvoice($event)">
+                <mat-radio-button [value]="false">No</mat-radio-button>
+                <mat-radio-button [value]="true">SI</mat-radio-button>
+              </mat-radio-group>                              
+        </div>
+
+        <ng-container *ngIf="requireInvoice">
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>RFC</mat-label>
+                        <input matInput placeholder="Placeholder" formControlName="rfc">
+                        <mat-icon matSuffix *ngIf="isValid('rfc')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+    
+                <div fxFlex="50">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Razón social</mat-label>
+                        <input matInput placeholder="Placeholder" formControlName="business_name">
+                        <mat-icon matSuffix *ngIf="isValid('business_name')">done</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+            </div>
+    
+            <mat-divider></mat-divider>
+    
+            <div class="mt-24 mb-12" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                <p>¿Requieres una dirección diferente para la factura?</p>
+                <mat-radio-group aria-label="¿Requieres una dirección diferente para la factura?" 
+                    fxLayout="row" 
+                    fxLayoutGap="12px"
+                    formControlName="copy_shipping_to_billing"
+                    (change)="changeCopyAddress($event)">
+                    <mat-radio-button [value]="false">No</mat-radio-button>
+                    <mat-radio-button [value]="true">SI</mat-radio-button>
+                </mat-radio-group>
+            </div>
+    
+            <ng-container formGroupName="billing">
+                <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+            
+                    <div fxFlex="50">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Código postal</mat-label>
+                            <input matInput placeholder="00000" formControlName="postcode">
+                            <mat-icon matSuffix *ngIf="isValidForBilling('postcode')">done</mat-icon>
+                            
+                        </mat-form-field>
+                    </div>
+        
+                    <div fxFlex="50">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Estado</mat-label>
+                            <mat-select formControlName="state">
+                                <mat-option *ngFor="let state of listStates" [value]="state.code">
+                                    {{ state.value }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix *ngIf="isValidForBilling('state')">done</mat-icon>
+                            
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+                    <div fxFlex="50">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Delegación / Municipio</mat-label>
+                            <input matInput formControlName="city">
+                            <mat-icon matSuffix *ngIf="isValidForBilling('city')">done</mat-icon>
+                            
+                        </mat-form-field>
+                    </div>
+        
+                    <div fxFlex="50">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Colonia</mat-label>
+                            <input matInput formControlName="colony">
+                            <mat-icon matSuffix *ngIf="isValidForBilling('colony')">done</mat-icon>
+                            
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+                    <div fxFlex="50">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Calle</mat-label>
+                            <input matInput formControlName="address_1">
+                            <mat-icon matSuffix *ngIf="isValidForBilling('address_1')">done</mat-icon>
+                            
+                        </mat-form-field>
+                    </div>
+        
+                    <div fxFlex="50">
+                        <div>
+                            <mat-form-field appearance="outline" style="width: calc(50% - 24px);margin-right: 24px;">
+                                <mat-label>Número exterior</mat-label>
+                                <input matInput formControlName="number_ext">
+                                <mat-icon matSuffix *ngIf="isValidForBilling('number_ext')">done</mat-icon>
+                                
+                            </mat-form-field>
+        
+                            <mat-form-field appearance="outline" style="width: 50%;">
+                                <mat-label>Número interior</mat-label>
+                                <input matInput placeholder="Placeholder" formControlName="number_int">
+                                <mat-icon matSuffix *ngIf="isValidForBilling('number_int')">done</mat-icon>
+                                
+                            </mat-form-field>
+        
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="0px" fxLayoutGap.gt-sm="24px">
+                    <div fxFlex="50">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Correo electrónico</mat-label>
+                            <input matInput placeholder="ejemplo@dominio.com" formControlName="email">
+                            <mat-icon matSuffix *ngIf="isValidForBilling('email')">done</mat-icon>
+                            
+                        </mat-form-field>
+                    </div>
+        
+                    <div fxFlex="50">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Teléfono (10 digitos)</mat-label>
+                            <input matInput placeholder="0000000000" formControlName="phone">
+                            <mat-icon matSuffix *ngIf="isValidForBilling('phone')">done</mat-icon>
+                            
+                        </mat-form-field>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <div fxLayout="row">
+            <p>Verifica que hayas llenado todos los campos <span>requeridos*</span>, para continuar.</p>
+        </div>
+
+        <div class="content-button mt-12">
+            <button mat-flat-button color="primary" [disabled]="form.invalid || loading" (click)="continue()">CONTINUAR</button>
+        </div>
+    </div>
+</div>

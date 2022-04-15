@@ -1,0 +1,146 @@
+<div class="content" fxLayout="column">
+
+    <div class="content-title mb-12" fxLayout="row" fxLayoutAlign="space-between start">
+        <h2 >Mis pedidos / Detalle de pedido #{{ folio }}</h2>
+        <div class="back cursor-pointer" fxLayout="row" fxLayoutAlign="center center" [routerLink]="['/perfil/mis-pedidos']" >
+            <mat-icon>chevron_left</mat-icon>
+            <u style="padding-bottom: 3px;">REGRESAR</u>
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    <div *ngIf="loading" fxFill class="mt-24" fxLayout="row" fxLayoutAlign="center center">
+        <mat-spinner [diameter]="35"></mat-spinner>
+    </div>
+    <div class="content-info mt-24"
+        *ngIf="!loading"
+        fxLayout="row" 
+        fxLayoutAlign="space-between start" 
+        fxLayoutGap="24px">
+        <div class="details-order" fxLayout="column" fxFlex="70" fxLayoutGap="24px">
+            <app-item-order [order]="order" [active]="true"></app-item-order>
+
+            <div class="status-order">
+                <p class="title-sec">Estatus del pedido</p>
+                <div class="step-order" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="2px">
+                    <div class="step" fxLayout="column" fxFlex>
+                        <div class="line">
+                            <span></span>
+                            <mat-icon>done</mat-icon>
+                        </div>
+                        <div class="text">
+                            <p>Pedido<br>Confirmado</p>
+                        </div>
+                    </div>
+                    <div class="step" fxLayout="column" fxFlex>
+                        <div class="line">
+                            <span></span>
+                            <mat-icon>done</mat-icon>
+                        </div>
+                        <div class="text">
+                            <p>Envío<br>Aprobado</p>
+                        </div>
+                    </div>
+                    <div class="step" fxLayout="column" fxFlex>
+                        <div class="line">
+                            <span></span>
+                            <mat-icon>done</mat-icon>
+                        </div>
+                        <div class="text">
+                            <p>Pedido<br>Preparado</p>
+                        </div>
+                    </div>
+                    <div class="step" fxLayout="column" fxFlex>
+                        <div class="line">
+                            <span></span>
+                            <mat-icon>done</mat-icon>
+                        </div>
+                        <div class="text">
+                            <p>Pedido<br>Enviado</p>
+                        </div>
+                    </div>
+                    <div class="step" fxLayout="column" fxFlex>
+                        <div class="line">
+                            <span></span>
+                            <mat-icon>done</mat-icon>
+                        </div>
+                        <div class="text">
+                            <p>Pedido<br>Entregado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-pay-shipping" fxLayout="row" fxLayoutGap="24px">
+                <div class="detail-pay" fxFlex>
+                    <p class="title-sec">Información de pago</p>
+                    <mat-divider></mat-divider>
+                    <div fxLayout="row" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+                        <div>
+                            <img width="80px" src="assets/images/icons/ico-compra-oxxo.svg">
+                        </div>
+                        <div>
+                            <span class="label-type-payment">Pago en OXXO</span>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <p class="sent-to mt-12">Enviaremos actualizaciones de tu pedido a: <br>
+                        <b>correo@dominio.com</b>
+                    </p>
+                </div>
+                <div class="detail-shipping" fxFlex>
+                    <p class="title-sec">Dirección de envío</p>
+                    <mat-divider></mat-divider>
+                    <div class="address pt-12 pb-12">
+                        <p>Gabriel Mancera, Exterior: 28, interior: 3, Col. del valle centro, benito juarez, CDMX.</p>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="mt-12 time-shipping" fxLayout="row" fxLayoutGap="8px">
+                        <mat-icon>local_shipping</mat-icon>
+                        <b>Entrega de 5 a 10 días</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="resume-order" fxFlex="30">
+            <div class="card-resume" fxLayout="column">
+                <p>Resumen de carrito</p>
+                <mat-divider class="mb-12"></mat-divider>
+                
+                <div fxLayout="column"  fxLayoutGap="12px">
+                    <div class="item-cart" *ngFor="let product of order.lineItems" fxLayout="row" fxLayoutAlign="space-between start">
+                        <div class="detail-product">
+                            <p class="name">{{ product.name }}</p>
+                            <p><span>SKU:</span>{{ product.sku }}</p>
+                            <p><span>Color:</span>{{ product.color }}</p>
+                            <p><span>Tamaño:</span>{{ product.size }}</p>
+                            <p><span>Cantidad:</span>{{ product.quantity }}</p>
+                        </div>
+                        <div class="total">{{ product.total | currency }}</div>
+                    </div>
+                </div>
+
+                <mat-divider class="mt-12"></mat-divider>
+
+                <div class="item-total mt-12">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <span class="label">Sub total</span>
+                        <span class="value">$2778.00</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <span class="label">Costo de envío</span>
+                        <span class="value">GRATIS</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <span class="label">Cupón de descuento</span>
+                        <span class="value">$110.00</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <span class="label">Total</span>
+                        <span class="value total"><span class="iva-include">IVA Incluido</span> $2668.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

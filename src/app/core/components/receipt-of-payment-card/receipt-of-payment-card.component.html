@@ -1,0 +1,101 @@
+<div style="font-family: 'arial';border: 2px solid #e8e8e8;border-radius: 5px;padding: 0 24px;">
+    <div style="background-color: #012794; width: 100%; height: 5px"></div>
+    <div style="margin-top: 36px;display: flex;justify-content: center;align-items: center;">
+        <img style="width: 200px;" src="https://centraldepisos.com.mx/assets/images/logos/logo-color.png" alt="">
+    </div>
+    <div style="margin-top: 24px;">
+        <p style="font-weight: bold;color: gray;">Información de pedido</p>
+        <p style="margin-bottom: 0;padding-bottom: 0;"><b>Número de pedido:</b> {{ order.id }}</p>
+        <p style="margin-top: 5px;margin-bottom: 0;padding-bottom: 0;"><b>Fecha del pedido:</b> {{ order.dateCreated | date }}</p>
+    </div>
+    <div class="divider" style="margin: 36px 0;width: 100%;height: 2px;background-color: #e8e8e8;"></div>
+    <div>
+        <p style="font-weight: bold;color: gray;">Información de envío y facturación</p>
+       <div style="display:flex">
+         <div style="width: 50%">
+           <p><b>Dirección de envío</b></p>
+           <p style="margin-bottom: 0;padding-bottom: 0;">{{ shipping.first_name }} {{ shipping.last_name }}</p>
+           <p style="margin-bottom: 0;padding-bottom: 0;margin-top: 5px;">{{ shipping.address_1 }}</p>
+           <p style="margin-bottom: 0;padding-bottom: 0;margin-top: 5px;">{{ shipping.address_2 }}</p>
+           <p style="margin-bottom: 0;padding-bottom: 0;margin-top: 5px;">{{ shipping.city }}, {{ shipping.state }}</p>
+           <p style="margin-bottom: 0;padding-bottom: 0;margin-top: 5px;">{{ shipping.email }}</p>
+         </div>
+         <div>
+           <p><b>Dirección de facturación</b></p>
+           <p style="margin-bottom: 0;padding-bottom: 0;">{{ billing.first_name }} {{ billing.last_name }}</p>
+           <p style="margin-bottom: 0;padding-bottom: 0;margin-top: 5px;">{{ billing.address_1 }}</p>
+           <p style="margin-bottom: 0;padding-bottom: 0;margin-top: 5px;">{{ billing.address_2 }}</p>
+           <p style="margin-bottom: 0;padding-bottom: 0;margin-top: 5px;">{{ billing.city }}, {{ billing.state }}</p>
+           <p style="margin-bottom: 0;padding-bottom: 0;margin-top: 5px;">{{ billing.email }}</p>
+         </div>
+       </div>
+    </div>
+    <div class="divider" style="margin: 36px 0;width: 100%;height: 2px;background-color: #e8e8e8;"></div>
+    <div>
+      <p style="font-weight: bold;color: gray;">RESUMEN DE PEDIDO </p>
+      
+      <table style="width: 100%">
+        <thead>
+          <tr>
+            <th style="text-align: left;">Producto</th>
+            <th style="text-align: right;">Cantidad</th>
+            <th style="text-align: right;">Unidad</th>
+            <th style="text-align: right;">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+
+            <ng-container *ngFor="let product of order.lineItems">
+                <tr>
+                    <td style="border-bottom: 1px solid #8080804d;padding-bottom: 5px;">{{ product?.name }}</td>
+                    <td style="border-bottom: 1px solid #8080804d;padding-bottom: 5px;text-align: right;">{{ product?.quantity }}</td>
+                    <td style="border-bottom: 1px solid #8080804d;padding-bottom: 5px;text-align: right;">{{ product?.price | currency}}</td>
+                    <td style="border-bottom: 1px solid #8080804d;padding-bottom: 5px;text-align: right;">{{ product?.total | currency }}</td>
+                </tr>
+            </ng-container>
+            
+          
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;">Subtotal del pedido:</td>
+            <td style="text-align: right;">{{ subTotal | currency }}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;">Costo de envío:</td>
+            <td style="text-align: right;">{{ totalShipping | currency }}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;">Cupón de descuento:</td>
+            <td style="text-align: right;">{{ discountByCupons | currency }}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"><b>Total del pedido:</b></td>
+            <td style="text-align: right;"><b>{{ totalPay | currency }}</b></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display: flex;justify-content: center;margin-bottom: 36px;margin-top: 36px;">
+        <button onclick="window.print()"
+            style="border: 1px solid;padding: 12px 36px;color: green;background-color: white;border-radius: 5px;cursor: pointer;">IMPRIMIR</button>
+    </div>
+</div>

@@ -1,0 +1,167 @@
+<div class="content" fxLayout="column" appPerfectScrollbar>
+    <div class="content-carousel">
+        <ngb-carousel (slide)="slideActivate($event)">
+            <ng-template ngbSlide>
+                <div class="picsum-img-wrapper" style="max-height: 700px;">
+                  <img src="assets/images/home_carousel/carousel.png" alt="Angular Carousel 1">
+                </div>
+                <div class="carousel-caption">
+                  <h3>Los mejores pisos y azulejos están en Central de Pisos</h3>
+                  <p class="mt-12 mb-24">Comercializamos los mejores acabados para decoración y construcción</p>
+                  <mat-button-toggle [routerLink]="['/productos']">VER PRODUCTOS</mat-button-toggle>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper" style="max-height: 700px;">
+                    <img src="assets/images/home_carousel/carousel.png" alt="Angular Carousel 1">
+                </div>
+                <div class="carousel-caption">
+                  <h3>Los mejores pisos y azulejos están en Central de Pisos</h3>
+                  <p class="mt-12 mb-24">Comercializamos los mejores acabados para decoración y construcción</p>
+                  <mat-button-toggle [routerLink]="['/productos']">VER PRODUCTOS</mat-button-toggle>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper" style="max-height: 700px;">
+                    <img src="assets/images/home_carousel/carousel.png" alt="Angular Carousel 1">
+                </div>
+                <div class="carousel-caption">
+                  <h3>Los mejores pisos y azulejos están en Central de Pisos</h3>
+                  <p class="mt-12 mb-24">Comercializamos los mejores acabados para decoración y construcción</p>
+                  <mat-button-toggle [routerLink]="['/productos']">VER PRODUCTOS</mat-button-toggle>
+                </div>
+              </ng-template>
+        </ngb-carousel>
+    </div>
+    
+    <div class="content-product mt-72 mb-48">
+        <h3 class="section-title">Productos</h3>
+        <span class="line-divider"></span>
+        <p class="section-desc mt-24 mb-48">Tenemos una amplia gama de opciones para hacer únicos tus espacios.</p>
+
+        <div class="content-categories" fxLayout="column">
+            <div class="mb-24" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="24px" fxLayoutAlign="center center">
+                <div class="floors" fxFlex="100" fxFlex.gt-xs="50">
+                    <app-card-category [routerLink]="['/productos/categoria/', floor.id]" [category]="floor.name" [image]="floor.image.src"></app-card-category>
+                </div>
+                <div class="tiles" fxFlex="100" fxFlex.gt-xs="50">
+                    <app-card-category [routerLink]="['/productos/categoria/', tile.id]" [category]="tile.name" [image]="tile.image.src"></app-card-category>
+                </div>
+            </div>
+            <div class="carousel-categories mb-24">
+              <carousel [cellsToShow]="totalShowCategory" [height]="265" autoplay="true" loop="true" [margin]="24" *ngIf="viewcategories">
+                <div class="carousel-cell" *ngFor="let category of categoriesfilter">
+                  <app-card-category [routerLink]="['/productos/categoria/', category.id]" [category]="category.name" [image]="category.image.src"></app-card-category>
+                </div>
+              </carousel>
+            </div>
+        </div>
+
+        <button mat-raised-button color="primary" [routerLink]="['/productos']">VER TODOS LOS PRODUCTOS</button>
+    </div>
+
+    <div class="section-about">
+      <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="center center" fxLayoutGap="50px">
+        <div class="content-video" style="width: 450px; height: 250px;">
+          <video src="assets/videos/nosotros.mp4" width="100%" controls poster="assets/images/backgrounds/banner-top-sucursales.png"></video>
+        </div>
+        <div class="content-info">
+          <h3 class="section-title">Nosotros</h3>
+          <span class="line-divider"></span>
+          <p class="mt-12 mb-36"><b>Central de Pisos</b> desde hace 28 años ofrece una amplia variedad de productos a los mejores precios del mercado.</p>
+
+          <button mat-button>CONOCE MÁS</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-top-sale">
+      <h3 class="section-title">Los más vendidos</h3>
+      <span class="line-divider"></span>
+
+      <div class="content-item mt-48" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="center start" fxLayoutAlign="center center" fxLayoutGap="24px">
+        <app-card-product *ngFor="let product of topProductSale" [product]="product"></app-card-product>
+      </div>
+
+      <button mat-raised-button color="primary" class="mt-48" [routerLink]="['/productos']" routerLinkActive="router-link-active" >VER TODOS LOS PRODUCTOS</button>
+    </div>
+
+    <div class="content-brands">
+      <h3 class="section-title">Nuestras marcas</h3>
+      <span class="line-divider"></span>
+
+      <div class="carousel-brands mt-72 mb-96" fxLayout="row" fxLayoutAlign="space-between center" appPerfectScrollbar fxLayoutGap="30px">
+        <div class="carousel-cell" >
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-accue.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell" >
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-acuaspa.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell" >
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-allapsa.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell" >
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-castel.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell">
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-cocemex.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell">
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-crest.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell" >
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-delta.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell" >
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-eb-tecnica.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell" >
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-grumucer.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell" >
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-helvex.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell">
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-imas.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell">
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-maner.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell" >
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-porcelanite.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell" >
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-proyecta.png" alt="" srcset="">
+        </div>
+        <div class="carousel-cell" >
+          <img style="max-width: 145px;" src="assets/images/brans/marcas-rotoplas.png" alt="" srcset="">
+        </div>
+      </div>
+    </div>
+
+    <div class="content-banner">
+      <div class="content-blue" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="center center" fxLayoutGap="24px">
+        <div class="images" fxFlex="50">
+          <img src="assets/images/BannerShipping.png" alt="">
+        </div>
+        <div class="text pl-24 pr-24" fxFlex="50">
+          <p><span class="yellow">ENVÍO GRATIS</span> A DOMICILIO</p>
+          <p>Dentro de CDMX y en algunas Zonas Del Área Metropolitana</p>
+          <p>Válido en compras superiores a <span class="yellow">$900</span></p>
+
+          <span class="restriction">* Aplica en compras en línea.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-contact" fxLayout="column" fxLayoutAlign="center center">
+      <div>
+        <h3 class="section-title">Contacto</h3>
+        <span class="line-divider"></span>
+
+        <p class="mt-24">Envía tus datos y un asesor se pondrá en contacto para resolver tus dudas.</p>
+
+        <button mat-button>CONTÁCTANOS</button>
+      </div>
+    </div>
+</div>

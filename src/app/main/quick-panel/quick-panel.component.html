@@ -1,17 +1,10 @@
 <mat-list class="date" cdkFocusRegionStart>
-  <h3 matSubHeader cdkFocusInit>
-    <span>Today</span>
-  </h3>
+  <div matSubHeader cdkFocusInit class="head">
+    <img class="logo-icon" src="assets/images/logos/logo-color.png">
+  </div>
 
   <div class="secondary-text mat-display-1 mb-0 p-16">
-    <div class="mb-12">
-      {{ date | date: 'EEEE'}}
-    </div>
-    <div fxLayout="row" fxLayoutAlign="start start">
-      <span>{{ date | date: 'd'}}</span>
-      <span class="mat-subheading-1">th</span>
-      <span>{{ date | date: 'MMMM'}}</span>
-    </div>
+    <app-navigation layout="vertical"></app-navigation>
   </div>
 </mat-list>
 

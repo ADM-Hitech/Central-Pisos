@@ -1,0 +1,96 @@
+<div class="content-ready">
+    <h1>¡Gracias por tu compra!</h1>
+    <span class="divider"></span>
+
+    <p class="order-number mt-36 mb-24"><span>Número de pedido:</span> {{ order.number }}</p>
+
+    <div fxLayout="row" class="mb-12 info-ticket" fxLayoutGap="12px">
+        <mat-icon>info_outline</mat-icon>
+        <p>Tu orden fue enviada por correo, imprime tu ticket de pago.</p>
+    </div>
+
+    <div *ngIf="oxxopayment" 
+        class="method-invoice p-24 mb-24" 
+        fxLayout="column" 
+        fxLayout.gt-sm="row" 
+        fxLayoutGap="36px" 
+        fxLayoutAlign="space-between start"
+        fxLayoutAlign.gt-sm="space-between end"
+    >
+        <div class="text" fxLayout="column">
+            <p>Método de facturación:</p>
+            <p *ngIf="order.paymentMethod == 'conekta_card'">Pago Con Tarjeta</p>
+            <p *ngIf="order.paymentMethod != 'conekta_card'">Pago en OXXO</p>
+            <p>Para finalizar su proceso de compra:</p>
+        </div>
+        <div class="cont-button">
+            <button mat-flat-button color="primary" (click)="print()">DESCARGA TU RECIBO DE PAGO</button>
+        </div>
+    </div>
+
+    <div class="details" 
+        fxLayout="column" 
+        fxLayout.gt-sm="row"
+        fxLayoutGap="24px">
+        <div class="info-pay" fxFlex="50">
+            <p class="title">Información de pago</p>
+            <mat-divider></mat-divider>
+
+            <div class="icon-pay" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+                <ng-container *ngIf="order.paymentMethod == 'conekta_card'">
+                    <img src="assets/images/icons/ico-compra-{{ companyCard }}.svg" alt="">
+                    <p>Pago con tarjeta</p>
+                </ng-container>
+                <ng-container *ngIf="order.paymentMethod != 'conekta_card'">
+                    <img src="assets/images/icons/ico-compra-oxxo.svg" alt="">
+                    <p>Pago en OXXO</p>
+                </ng-container>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="alert-pay mt-24" fxLayout="row" fxLayoutGap="8px">
+                <mat-icon>timer</mat-icon>
+                <p>Recuerda realizar tu pago en las próximas<br>
+                    72 horas en la sucursal de tu preferencia.</p>
+            </div>
+            <div class="details-total mt-12" fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <span class="label">Sub Total</span>
+                    <span class="amount">{{ subTotal | currency }}</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <span class="label">Costo de envío</span>
+                    <span class="amount">
+                        <ng-container *ngIf="totalShipping > 0">{{ totalShipping | currency }}</ng-container>
+                        <ng-container *ngIf="totalShipping <= 0">GRATIS</ng-container>
+                    </span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <span class="label">Cupón de descuento</span>
+                    <span class="amount">{{ order.discountTotal | currency }}</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <span class="label">Total</span>
+                    <span class="amount total"><span class="label-iva">IVA Incluido</span> {{ order.total - order.totalTax | currency }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="info-shipping" fxFlex="50">
+            <p class="title">Dirección de envío</p>
+            <mat-divider></mat-divider>
+            <p class="address">{{ order.shipping.fullAddress }}</p>
+            <mat-divider></mat-divider>
+            <div class="time-shipping mt-24" fxLayout="row" fxLayoutGap="8px">
+                <div class="icon"><fa-icon [icon]="iconTruck"></fa-icon></div>
+                <p>Entrega de 5 a 10 días</p>
+            </div>
+
+            <p class="mt-12 email">Enviaremos actualizaciones de tu pedido a: <br>
+            <b>{{ order?.billing?.email }}</b></p>
+        </div>
+    </div>
+    <div class="content-button mt-48" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="center center" fxLayoutAlign.gt-sm="start start">
+        <button mat-flat-button color="primary" fxFlex="50" [routerLink]="['/productos']" routerLinkActive="router-link-active" >REGRESAR A LA TIENDA</button>
+    </div>
+</div>

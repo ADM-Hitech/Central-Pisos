@@ -83,4 +83,17 @@ export class Utils {
                    .replace(/^-+/, '')             // Trim - from start of text
                    .replace(/-+$/, '');            // Trim - from end of text
     }
+
+    public static calculateDistance(origin: { lat: number, lng: number }, destination: { lat: number, lng: number }) {
+        var lat1 = origin.lat;
+        var lon1 = origin.lng;
+        var lat2 = destination.lat;
+        var lon2 = destination.lng;
+
+        var p = 0.017453292519943295;
+        var c = Math.cos;
+        var a = 0.5 - c((lat2 - lat1) * p)/2 + c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
+
+        return 12742 * Math.asin(Math.sqrt(a));
+    }
 }

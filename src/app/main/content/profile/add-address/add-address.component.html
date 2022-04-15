@@ -1,0 +1,115 @@
+<div class="content" fxLayout="column">
+    <div class="content-title mb-24" fxLayout="row" fxLayoutAlign="space-between start">
+        <h2>Mis direcciones / {{ type }}</h2>
+        <div class="back cursor-pointer" fxLayout="row" fxLayoutAlign="center center" [routerLink]="['/perfil/mis-direcciones']" >
+            <mat-icon>chevron_left</mat-icon>
+            <u style="padding-bottom: 3px;">REGRESAR</u>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="form mt-24" fxLayout="column">
+        <div fxLayout="row wrap" fxLayoutAlign="space-between start" [formGroup]="form">
+            <div fxFlex="100" fxFlex.gt-sm="30" >
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput required formControlName="first_name">
+                    <mat-icon matSuffix *ngIf="isValid('first_name')">done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput required formControlName="last_name">
+                    <mat-icon matSuffix *ngIf="isValid('last_name')">done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Código postal</mat-label>
+                    <input matInput required formControlName="postcode">
+                    <mat-icon matSuffix *ngIf="isValid('postcode')">done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="state" required>
+                        <mat-option *ngFor="let state of listStates" [value]="state.code">
+                            {{ state.value }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix *ngIf="isValid('state')">done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Delegación / Municipio</mat-label>
+                    <input matInput required formControlName="city">
+                    <mat-icon matSuffix *ngIf="isValid('city')">done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Colonia</mat-label>
+                    <input matInput required formControlName="colony">
+                    <mat-icon matSuffix *ngIf="isValid('colony')">done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Calle</mat-label>
+                    <input matInput required formControlName="address_1">
+                    <mat-icon matSuffix *ngIf="isValid('address_1')">done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Número exterior</mat-label>
+                    <input matInput required formControlName="number_ext">
+                    <mat-icon matSuffix *ngIf="isValid('number_ext')">done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Número interior</mat-label>
+                    <input matInput formControlName="number_int">
+                    <mat-icon matSuffix *ngIf="isValid('number_int')">done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput required formControlName="email">
+                    <mat-icon matSuffix *ngIf="isValid('email')">done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Teléfono (10 digitos)</mat-label>
+                    <input matInput required formControlName="phone">
+                    <mat-icon matSuffix *ngIf="isValid('phone')">done</mat-icon>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="30">
+                <mat-form-field appearance="outline">
+                    <mat-label>Referencias</mat-label>
+                    <input matInput required formControlName="reference">
+                    <mat-icon matSuffix *ngIf="isValid('reference')">done</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="content-buttons mt-12" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px">
+            <div fxFlex="35">
+                <button fxFill mat-flat-button class="btn-cancel">
+                    CANCELAR
+                  </button>
+            </div>
+            <div fxFlex="65">
+                <button fxFill mat-flat-button color="primary" [disabled]="form.invalid || loading" (click)="submit()">
+                    GUARDAR DIRECCIÓN
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

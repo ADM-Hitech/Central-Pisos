@@ -1,0 +1,52 @@
+.card-branch-office {
+    background-color: #f3f5f9;
+    border: 2px solid #e8eaec;
+    border-radius: 5px;
+    padding: 25px;
+
+    .content-city {
+        margin-bottom: 8px;
+
+        p {
+            margin: 0;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        span {
+            background-color: #ff3100;
+            padding: 3px 15px;
+            font-weight: bold;
+            color: white;
+            border-radius: 50px;
+        }
+    }
+
+    .content-info {
+        mat-icon {
+            margin-right: 12px;
+            color: #99abbe;
+        }
+
+        p {
+            &:first-child {
+                font-weight: bold;
+                color: #012794;
+                font-size: 15px;
+            }
+
+            &:last-child {
+                font-size: 14px;
+                color: #5c6066;
+            }
+
+            &.address {
+                font-size: 12px;
+            }
+        }
+    }
+
+    button {
+        width: 100%;
+    }
+}

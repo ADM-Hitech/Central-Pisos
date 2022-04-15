@@ -1,0 +1,32 @@
+<div class="content" fxLayout="column" appPerfectScrollbar>
+    <app-header-pages namePage="Sucursales" image="assets/images/backgrounds/banner-top-sucursales.png"></app-header-pages>
+
+    <div class="breadcrums pt-12 pb-12" fxLayout="row" fxLayoutGap="8px">
+        <span class="cursor-pointer" [routerLink]="['/']">Inicio</span>
+        <span>/</span>
+        <span>Sucursales</span>
+    </div>
+
+
+    <div class="container">
+        <h1>Localiza tu sucursal</h1>
+        <span class="divider"></span>
+
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="30px" class="mt-24" fxLayoutAlign.sm="center center">
+            <div fxFlex="40" fxLayout="column" fxLayoutGap="20px" class="content-list-branch-offices" appPerfectScrollbar>
+                <ng-container *ngFor="let branch of listBranchOffices">
+                    <app-card-branch-office [state]="branch.state" [isPrincipal]="branch.isPrincipal" [address]="branch.address" [telephones]="branch.telephones" (clickBotton)="changeIndexBranch(branch.id)"></app-card-branch-office>
+                </ng-container>
+            </div>
+            <div fxFlex="60" class="content-map">
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                    <agm-marker *ngFor="let marker of listBranchOffices"
+                        [latitude]="marker.latitud"
+                        [longitude]="marker.longitud"
+                        iconUrl="assets/images/mapa-pin.png">
+                    </agm-marker>
+                </agm-map>
+            </div>
+        </div>
+    </div>
+</div>

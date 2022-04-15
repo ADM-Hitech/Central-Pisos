@@ -1,0 +1,404 @@
+<div class="content" fxLayout="column" appPerfectScrollbar>
+    <div class="breadcrums pt-12 pb-12" fxLayout="row" fxLayoutGap="8px">
+        <span class="cursor-pointer" [routerLink]="['/']">Inicio</span>
+        <span>/</span>
+        <span class="cursor-pointer" [routerLink]="['/productos']">Productos</span>
+        <span>/</span>
+        <span class="cursor-pointer" [routerLink]="['/productos/categoria/', product?.categories[0]?.id]" >{{ product?.categories[0]?.name }}</span>
+        <span>/</span>
+        <span>{{ product.name }}</span>
+    </div>
+
+    <div class="container">
+        <div fxFill *ngIf="loading" fxLayout="row" fxLayoutAlign="center center">
+            <mat-spinner [diameter]="35"></mat-spinner>
+        </div>
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="36px" *ngIf="!loading">
+            <div class="images" fxFlex="45">
+                <div class="preview-image">
+                    <img [src]="images[currentImage]?.src || product.firtsImage" alt="">
+                </div>
+                <div class="caroucel-images mt-24">
+                    <div class="carousel-cell" (click)="changeCurrentImage(i)" *ngFor="let image of images; let i=index">
+                        <img [src]="image.src" [alt]="image.alt">
+                    </div>
+                </div>
+            </div>
+            <div class="description" fxFlex="100" fxFlex.gt-sm="55">
+                <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between center" >
+                    <div class="title" fxLayout="column">
+                        <h1>{{ product.name }}</h1>
+                        <span class="divider"></span>
+                        <span class="code mt-12" *ngIf="product.sku">CLAVE: {{ product.sku }}</span>
+                    </div>
+                    <div class="ranking">
+                        <ul fxLayout="row" fxLayoutGap="6px">
+                            <li>
+                                <i class="fa fa-star fa-2x" (click)="addReview(1)" [ngClass]="{'active': product.averageRating >= 1}"></i>
+                            </li>
+                            <li>
+                                <i class="fa fa-star fa-2x" (click)="addReview(2)" [ngClass]="{'active': product.averageRating >= 2}"></i>
+                            </li>
+                            <li>
+                                <i class="fa fa-star fa-2x" (click)="addReview(3)" [ngClass]="{'active': product.averageRating >= 3}"></i>
+                            </li>
+                            <li>
+                                <i class="fa fa-star fa-2x" (click)="addReview(4)" [ngClass]="{'active': product.averageRating >= 4}"></i>
+                            </li>
+                            <li>
+                                <i class="fa fa-star fa-2x" (click)="addReview(5)" [ngClass]="{'active': product.averageRating >= 5}"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="describe-product mt-24 mb-24">
+                    {{ product.shortDescription}} <br><br>
+
+                    <ng-container *ngIf="product.description != ''">
+                        <p><b>Cateristicas:</b></p>
+                        {{ product.description }}
+                    </ng-container>
+                </div>
+                <div class="content-price mb-12" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start center">
+                    <div class="price">
+                        <span class="mr-12 saleprice">{{ product.price | currency }}</span>
+                        <span *ngIf="product.withDiscount" class="withdiscount"><del>{{ product.regularPrice | currency }}</del></span>
+                    </div>
+                    <div class="discount" *ngIf="product.withDiscount">
+                        <span>-{{ product.porcentDiscount }}%</span>
+                    </div>
+                </div>
+                <div class="size item-info" fxLayout="row" *ngIf="product.sizes.length <= 0 && product.dimension != ''">
+                    <div class="label">
+                        <mat-label>Tamaño:</mat-label>
+                    </div>
+                    <div class="value">
+                        <div *ngIf="product.sizes.length <= 0 && product.dimension != ''" class="simple-size">
+                            {{ product.dimension }} cm
+                        </div>
+
+                        <ng-container *ngIf="product.sizes.length > 0">
+                            <button mat-button [matMenuTriggerFor]="menusize">
+                                {{ product.sizes[currentSize] | uppercase }}
+                            </button>
+                            <mat-menu #menusize="matMenu">
+                                <button mat-menu-item *ngFor="let size of product.sizes; let i = index" (click)="changeCurrentSize(i)">
+                                    <span class="name-color">{{ size | uppercase }}</span>
+                                </button>
+                            </mat-menu>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="color item-info" fxLayout="row" *ngIf="contentColor">
+                    <div class="label">
+                        <mat-label>Color:</mat-label>
+                    </div>
+                    <div class="value">
+                        <button mat-button [matMenuTriggerFor]="menucolor">
+                            <span class="circle-color" [ngStyle]="{'background-color': product.colors[currentColor].value}"></span>
+                            <span class="name-color">{{ Color.label | uppercase }}</span>
+                        </button>
+                        <mat-menu #menucolor="matMenu">
+                            <button mat-menu-item *ngFor="let color of product.colors; let i = index" (click)="changeCurrentColor(i)">
+                                <div class="ctn-color-option" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                                    <span class="circle-color"
+                                        style="margin-right: 12px;width: 30px;height: 30px;border-radius: 15px;"
+                                        [ngStyle]="{'background-color': color.value}"
+                                    ></span>
+                                    <span class="name-color">{{ color.label | uppercase }}</span>
+                                </div>
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+
+                <mat-divider *ngIf="marca != ''"></mat-divider>
+                
+                <div class="size item-info" fxLayout="row" *ngIf="marca != ''">
+                    <div class="label">
+                        <mat-label>Marca:</mat-label>
+                    </div>
+                    <div class="value">
+                        <div class="simple-size">
+                            {{ marca }}
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider *ngIf="linea != ''"></mat-divider>
+                
+                <div class="size item-info" fxLayout="row" *ngIf="linea != ''">
+                    <div class="label">
+                        <mat-label>Linea:</mat-label>
+                    </div>
+                    <div class="value">
+                        <div class="simple-size">
+                            {{ linea }}
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider *ngIf="garantia != ''"></mat-divider>
+                
+                <div class="size item-info" fxLayout="row" *ngIf="garantia != ''">
+                    <div class="label">
+                        <mat-label>Garantia:</mat-label>
+                    </div>
+                    <div class="value">
+                        <div class="simple-size">
+                            {{ garantia }}
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider *ngIf="peso != ''"></mat-divider>
+                
+                <div class="size item-info" fxLayout="row" *ngIf="peso != ''">
+                    <div class="label">
+                        <mat-label>Peso:</mat-label>
+                    </div>
+                    <div class="value">
+                        <div class="simple-size">
+                            {{ peso }}
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider *ngIf="calidad != ''"></mat-divider>
+                
+                <div class="size item-info" fxLayout="row" *ngIf="calidad != ''">
+                    <div class="label">
+                        <mat-label>Calidad:</mat-label>
+                    </div>
+                    <div class="value">
+                        <div class="simple-size">
+                            {{ calidad }}
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider *ngIf="pzperbox != ''"></mat-divider>
+                
+                <div class="size item-info" fxLayout="row" *ngIf="pzperbox != ''">
+                    <div class="label">
+                        <mat-label>Piezas x Caja:</mat-label>
+                    </div>
+                    <div class="value">
+                        <div class="simple-size">
+                            {{ pzperbox }}
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider *ngIf="mtperbox != ''"></mat-divider>
+                
+                <div class="size item-info" fxLayout="row" *ngIf="mtperbox != ''">
+                    <div class="label">
+                        <mat-label>Metros x Caja:</mat-label>
+                    </div>
+                    <div class="value">
+                        <div class="simple-size">
+                            {{ mtperbox }}
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="quantity item-info" fxLayout="row">
+                    <div class="label">
+                        <mat-label>Cantidad:</mat-label>
+                    </div>
+                    <div class="value" fxLayout="row" fxLayoutGap="24px">
+                        <div class="input-quantity">
+                            <div class="btn minus" (click)="quantity(false)">
+                                <mat-icon>remove</mat-icon>
+                            </div>
+                            <div class="val">{{ product.quantityCart }}</div>
+                            <div class="btn plus" (click)="quantity(true)">
+                                <mat-icon>add</mat-icon>
+                            </div>
+                        </div>
+                        <div class="btn-add-to-car" fxShow.gt-sm="true" fxShow="false">
+                            <button mat-flat-button color="primary" (click)="addToCart()">
+                                <mat-icon>shopping_cart</mat-icon>
+                                AGREGAR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quantity item-info" fxLayoutAlign="center center" fxLayout="row" fxShow.gt-sm="false" fxShow="true">
+                    <div class="btn-add-to-car">
+                        <button mat-flat-button color="primary" (click)="addToCart()">
+                            <mat-icon [ngStyle]="{'color': 'white'}">shopping_cart</mat-icon>
+                            AGREGAR AL CARRITO
+                        </button>
+                    </div>
+                </div>
+                
+                <mat-divider *ngIf="product.tags.length > 0"></mat-divider>
+
+                <div class="applications item-info" fxLayout="row" *ngIf="product.tags.length > 0">
+                    <div class="label">
+                        <mat-label>Usos:</mat-label>
+                    </div>
+                    <div class="value" fxLayoutGap="12px" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                        <div fxFlex="100" fxFlex.gt-sm="30" fxLayout="row wrap" *ngFor="let tag of tags">
+                            <div class="content-applications" fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+                                <div class="circle-application">
+                                    <img src="assets/images/tags/ico-{{tag.slug}}.png" alt="">
+                                </div>
+                                <div class="label-application">
+                                    <mat-label>{{ tag.name }}</mat-label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="content-calculator" fxLayout="column" *ngIf="requireCalculate">
+                    <h4>¿Cuantas cajas necesito comprar?</h4>
+                    <p>Ingresa la cantidad de metros cuadrados (m2) de tu espacio.</p>
+                    <p class="boxs" *ngIf="totalM2 > 0">Cajas necesarias: <b>{{ totalM2 }}</b></p>
+                    <div class="calculator" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px" fxLayoutGap="12px" fxLayoutAlign="start center">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Metros Cuadrados:</mat-label>
+                            <input matInput placeholder="ejemplo: 23" [(ngModel)]="m2">
+                        </mat-form-field>
+                        <button mat-flat-button color="primary" (click)="calculateBoxs()">
+                            <mat-icon>calculate</mat-icon>
+                            CALCULAR
+                        </button>
+                    </div>
+                    <span class="nota">* Se recomienda anexar 10% más de m2 de piso a instalar.</span>
+                    <span class="nota">* Este cálculo no incluye lo requerido para el zoclo.</span>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="stock mt-24" fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+                    <div class="icon"><i class="fa fa-check"></i></div>
+                    <div class="text">En existencia</div>
+                </div>
+                <div class="shipping" fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+                    <div class="icon"><i class="fa fa-truck"></i></div>
+                    <div class="text">Envío gratis a docimicilio dentro de CDMX y algunas Zonas del área Metropolitana.<br>
+                        En compras superiores a $900 pesos.<br>
+                        Aplica únicamente en compras en línea.
+                    </div>
+                </div>
+                <div class="pay-security" fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="start center">
+                    <div class="icon">
+                        <mat-icon>verified_user</mat-icon>
+                    </div>
+                    <div class="text">Paga Seguro. Puedes pagar con tarjeta o en efectivo.</div>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="social-network item-info" fxLayout="column" fxLayout.gt-sm="row">
+                    <div class="label" fxShow.gt-sm="true" fxShow="false">
+                        <mat-label>Compartir en:</mat-label>
+                    </div>
+                    <div class="logos" fxLayout="row" fxLayoutGap="12px">
+                        <a href="https://api.whatsapp.com/send?text=https://centraldepisos.com.mx/productos/{{product.id}}" target="_blank">
+                            <div class="whatsapp icon">
+                                <i class="fa fa-whatsapp"></i>
+                            </div>
+                        </a>
+
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://centraldepisos.com.mx/productos/{{product.id}}" target="_blank">
+                            <div class="facebook icon">
+                                <i class="fa fa-facebook"></i>
+                            </div>
+                        </a>
+
+                        <a href="https://twitter.com/intent/tweet?text=&url=https://centraldepisos.com.mx/productos/{{product.id}}" target="_blank">
+                            <div class="twitter icon">
+                                <i class="fa fa-twitter"></i>
+                            </div>
+                        </a>
+
+                        <a href="mailto:ejemplo@ejemplo.com?Subject=Central%20de%20Pisos&body=https://centraldepisos.com.mx/productos/{{product.id}}">
+                            <div class="email icon">
+                                <mat-icon>mail</mat-icon>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+        </div>
+    </div>
+
+    <div class="recommended-products-section">
+        <div class="container">
+            <div class="recommended-products">
+                <h2>Productos Recomendados</h2>
+                <span class="divider"></span>
+
+                <div fxFill *ngIf="loadingRelations" fxLayout="row" fxLayoutAlign="center center">
+                    <mat-spinner [diameter]="35"></mat-spinner>
+                </div>
+
+                <div *ngIf="!loadingRelations" class="content-item mt-48" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="center center" fxLayoutGap="24px">
+                    <app-card-product *ngFor="let product of relations" [product]="product"></app-card-product>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="people-ranking-section">
+        <div class="container">
+            <div class="people-ranking">
+                <h2>Opiniones de clientes</h2>
+                <span class="divider"></span>
+
+                <div class="rankings mt-36">
+                    <ng-container *ngFor="let review of reviews; let i = index;">
+                        <div class="item-ranking" fxLayout="column" > 
+                            <div class="starts">
+                                <ul fxLayout="row">
+                                    <li>
+                                        <i class="fa fa-star fa-1x" [ngClass]="{'active': review.rating >= 1}"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star fa-1x" [ngClass]="{'active': review.rating >= 2}"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star fa-1x" [ngClass]="{'active': review.rating >= 3}"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star fa-1x" [ngClass]="{'active': review.rating >= 4}"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star fa-1x" [ngClass]="{'active': review.rating >= 5}"></i>
+                                    </li>
+                                </ul>
+                            </div>
+    
+                            <div class="title">
+                                <p>{{ review.reviewer }}</p>
+                            </div>
+                            <div class="user-date">
+                                <p>comentó el {{ review.dateCreated | date}}</p>
+                            </div>
+                            <div class="comment">
+                                <p>{{ review.review }}</p>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="i < reviews.length - 1">
+                            <mat-divider class="mt-24 mb-24"></mat-divider>
+                        </ng-container>
+                        
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

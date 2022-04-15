@@ -1,35 +1,20 @@
 <mat-sidenav-container>
     <div id="app-main-content">
-        <ng-container *ngIf="appSettings.layout.toolbar === 'above'">
-            <app-toolbar class="above" [ngClass]="appSettings.colorClasses.toolbar"></app-toolbar>
-        </ng-container>
         
         <div id="wrapper">
-            <app-navbar 
-            [folded]="appSettings.layout.navigationFolded"
-            class="left-navbar"
-            *ngIf="appSettings.layout.navigation === 'left'"
-            [ngClass]="appSettings.colorClasses.navbar"></app-navbar>
 
             <div class="content-wrapper">
-
                 <ng-container *ngIf="appSettings.layout.toolbar === 'below'">
                     <app-toolbar class="below" [ngClass]="appSettings.colorClasses.toolbar"></app-toolbar>
                 </ng-container>
                 
-                <app-content></app-content>
+                <app-content id="content-router"></app-content>
 
                 <ng-container *ngIf="appSettings.layout.footer === 'below'">
                     <app-footter class="below" [ngClass]="appSettings.colorClasses.footer"></app-footter>
                 </ng-container>
                 
             </div>
-
-            <app-navbar 
-            [folded]="appSettings.layout.navigationFolded"
-            class="right-navbar"
-            *ngIf="appSettings.layout.navigation === 'right'"
-            [ngClass]="appSettings.colorClasses.navbar"></app-navbar>
         </div>
 
         <ng-container *ngIf="appSettings.layout.footer === 'above'">
@@ -37,4 +22,14 @@
         </ng-container>
         
     </div>
+    <mat-sidenav appMatSidenavHelper="quick-panel" appMatSidenavMode="over" appMatSidenavPosition="end">
+        <div class="logo cursor-pointer" [routerLink]="['/']" appMatSidenavToggler="quick-panel">
+            <img class="logo-icon" src="assets/images/logos/logo-color.png">
+          </div>
+        <app-navigation></app-navigation>
+    </mat-sidenav>
 </mat-sidenav-container>
+
+<a href="https://wa.link/173vt7" class="whatsapp-link" target="_blank">
+    <i class="fa fa-whatsapp"></i>
+</a>

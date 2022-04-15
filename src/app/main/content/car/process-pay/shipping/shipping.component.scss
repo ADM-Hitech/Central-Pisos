@@ -1,0 +1,24 @@
+@import '../../../../../core/scss/app';
+
+.content-shipping {
+    h1 {
+        color: mat-color($primary);
+    }
+
+    .form {
+        mat-form-field {
+            width: 100%;
+
+            .mat-icon {
+                color: #1cbdbb;
+            }
+        }
+
+        .content-button {
+            button {
+                width: 100%;
+                padding: 6px 0;
+            }
+        }
+    }
+}

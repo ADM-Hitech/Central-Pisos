@@ -1,0 +1,160 @@
+@import '../../../../../core/scss/app';
+
+app-ready {
+    width: 90%;
+
+    @include media-breakpoint-down('sm') {
+        width: 100%;
+    }
+
+    .content-ready {
+        width: 90%;
+        margin-left: 10%;
+
+        @include media-breakpoint-down('sm') {
+            width: 100%;
+            margin-left: 0%;
+        }
+    
+        h1 {
+            color: mat-color($primary);
+        }
+    
+        .order-number {
+            color: #28b0a2;
+            font-size: 18px;
+    
+            span {
+                color: #585b61;
+            }
+        }
+    
+        .info-ticket {
+            p {
+                color: #585c6d;
+            }    
+        }
+    
+        .method-invoice {
+            background-color: #f3f5f9;
+            border-radius: 6px;
+    
+            p {
+                color: #585c6d;
+    
+                &:first-child {
+                    font-weight: 600;
+                }
+    
+                &:nth-child(2) {
+                    margin-bottom: 0;
+                }
+            }
+    
+            .cont-button {
+                button {
+                    background-color: #fe2f00;
+                    font-weight: 400;
+                }
+            }
+        }
+    
+        .details {
+            .info-pay {
+                .title {
+                    font-weight: 500;
+                }
+    
+                .icon-pay {
+                    img {
+                        max-width: 80px;
+                    }
+    
+                    p {
+                        margin-bottom: 0;
+                        font-size: 12px;
+                        color: #73747f;
+                    }
+                }
+    
+                .alert-pay {
+                    p {
+                        color: #2c4055;
+                        font-weight: 500;
+                        margin-bottom: 0;
+                    }
+                }
+    
+                .details-total {
+    
+                    div {
+                        padding: 2px 0;
+    
+                        .label {
+                            color: #73747f;
+                        }
+        
+                        .amount {
+                            font-weight: 600;
+        
+                            .label-iva {
+                                color: #73747f;
+                                font-size: 10px;
+                                font-weight: 300;
+                            }
+        
+                            &.total {
+                                color: mat-color($primary);
+                                font-size: 17px;
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .info-shipping {
+                .title {
+                    font-weight: 500;
+                }
+    
+                .address {
+                    min-height: 80px;
+                    margin-bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    color: #73747f;
+                }
+    
+                .time-shipping {
+                    min-height: 40px;
+    
+                    .icon {
+                        i {
+                            font-size: 22px;
+                        }
+                    }
+    
+                    p {
+                        color: #2c4055;
+                        font-weight: 500;
+                    }
+                }
+    
+                .email {
+                    color: #2c4055;
+                    b {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    
+        .content-button {
+            button {
+                background-color: #9ba8bd;
+                font-weight: 400;
+                padding: 8px 0;
+            }
+        }
+    }
+}

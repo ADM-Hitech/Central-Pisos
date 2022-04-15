@@ -1,0 +1,498 @@
+@import '../../../../core/scss/app';
+
+app-details-product {
+    .breadcrums {
+        background-color: #e5e9f2;
+        padding: 0 10%;
+    }
+    
+    .container {
+        width: 80%;
+        margin-top: 70px;
+        margin-bottom: 70px;
+
+        @include media-breakpoint-down('sm') {
+            width: 90%;
+        }
+
+        .images {
+            .preview-image {
+                text-align: center;
+            }
+
+            .caroucel-images {
+                display: flex;
+                gap: 12px;
+                overflow: auto;
+
+                .carousel-cell {
+                    max-width: 130px;
+                    min-width: 130px;
+                }
+            }
+        }
+    
+        .description {
+            .title {
+                h1 {
+                    font-size: 40px;
+                    color: mat-color($primary);
+                    margin-bottom: 15px;
+                    margin-top: 0;
+                }
+
+                .code {
+                    color: #525e6e;
+                }
+            }
+    
+            .ranking {
+                @include media-breakpoint-down('sm') {
+                    width: 100%;
+                }
+
+                ul {
+                    list-style: none;
+                    margin: 0;
+
+                    @include media-breakpoint-down('sm') {
+                        padding: 0;
+                        margin-top: 30px;
+                    }
+    
+                    li {
+                        i {
+                            &.active {
+                                color: #fdbc00;
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .describe-product {
+                font-size: 14px;
+                font-weight: 300;
+                color: #525f70;
+            }
+    
+            .content-price {
+                .price {
+                    min-width: 200px;
+    
+                    span {
+                        &.saleprice {
+                            font-size: 28px;
+                            font-weight: bold;
+                        }
+    
+                        &.withdiscount {
+                            font-size: 18px;
+                            color: #9aa9bc;
+                        }
+                    }
+                }
+    
+                .discount {
+                    span {
+                        background-color: red;
+                        color: white;
+                        padding: 8px 15px;
+                        font-weight: 500;
+                        font-size: 13px;
+                    }
+                }
+            }
+    
+            .item-info {
+                padding: 15px 0;
+                display: flex;
+                align-items: center;
+    
+                .label {
+                    margin-right: 24px;
+                    min-width: 200px;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #525e6e;
+                }
+    
+                &.size {
+                    .value {
+                        > button, .simple-size {
+                            padding: 8px 18px;
+                            background-color: #2f3d57;
+                            color: white;
+                            font-weight: 500;
+                            font-size: 13px;
+                            line-height: 20px;
+                            border-radius: 0;
+                        }
+                    }
+                }
+    
+                &.color {
+                    .value {
+                        button {
+                            .mat-button-wrapper {
+                                display: flex;
+                                align-items: center;
+    
+                                .circle-color {
+                                    display: block;
+                                    width: 40px;
+                                    height: 40px;
+                                    border-radius: 20px;
+                                    background-color: #cdb4a0;
+                                    margin-right: 12px;
+                                }
+    
+                                .name-color {
+                                    color: #565d6f;
+                                    font-weight: 200;
+                                    font-size: 14px;
+                                } 
+                            }   
+                        }
+    
+                        .mat-menu {
+                            .ctn-color-option {
+                                .circle-color {
+                                    display: block;
+                                    width: 40px;
+                                    height: 40px;
+                                    border-radius: 20px;
+                                    background-color: #cdb4a0;
+                                    margin-right: 12px;
+                                }
+    
+                                .name-color {
+                                    color: #565d6f;
+                                    font-weight: 200;
+                                    font-size: 14px;
+                                } 
+                            }
+                        }
+                    }
+                }
+    
+                &.quantity {
+                    .value {
+                        .input-quantity {
+                            display: flex;
+                            align-items: center;
+    
+                            .val {
+                                display: flex;
+                                padding: 5px 15px;
+                                border-top: 2px solid #d0d0d0;
+                                border-bottom: 2px solid #d0d0d0;
+                                font-size: 15px;
+                            }
+    
+                            .btn {
+                                border: 2px solid #d0d0d0;
+                                display: flex;
+                                align-items: center;
+    
+                                &.minus {
+                                    border-radius: 7px 0px 0 7px;
+                                }
+    
+                                &.plus {
+                                    border-radius: 0px 7px 7px 0px;
+                                }
+                            }
+                        }
+    
+                        .btn-add-to-car {
+                            mat-icon {
+                                color: white;
+                            }
+    
+                            button {
+                                font-weight: 300;
+                            }
+                        }
+                    }
+                }
+    
+                &.applications {
+                    .content-applications {
+                        .circle-application {
+                            img {
+                                min-width: 30px;
+                                min-height: 30px;
+                            }
+                        }
+    
+                        .label-application {
+                            mat-label {
+                                color: #565d6f;
+                                font-weight: 200;
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .content-calculator {
+                padding: 26px;
+                background-color: #f3f4f8;
+
+                .boxs {
+                    margin-top: 0;
+                }
+    
+                h4 {
+                    font-weight: bold;
+                    font-size: 18px;
+                }
+    
+                p {
+                    margin: 15px 0;
+                    font-size: 13px;
+                    color: #565d6f;
+                }
+    
+                .calculator {
+
+                    margin-bottom: 12px;
+                    margin-top: 8px;
+    
+                    .mat-form-field {
+                        font-size: 12px;
+    
+                        .mat-form-field-outline {
+                            border-radius: 6px;
+                            background-color: white;
+                        }
+                    }
+    
+                    button {
+                        background-color: black;
+                        mat-icon {
+                            color: white;
+                        }
+                        font-weight: 300;
+                    }
+                }
+    
+                .nota {
+                    font-size: 11px;
+                    color: #565d6f;
+                    display: block;
+                    &:last-child {
+                        margin-top: 5px;
+                    }
+                }
+            }
+    
+            .stock {
+                .icon {
+                    i {
+                        width: 24px;
+                        height: 24px;
+                        font-size: 24px;
+                        text-align: center;
+                        color: #02bfc1;
+                    }
+                }
+    
+                .text {
+                    font-size: 13px;
+                    color: #565d6f;
+                    font-weight: 300;
+                }
+            }
+            
+            .shipping {
+                margin: 12px 0;
+                .icon {
+                    i {
+                        width: 24px;
+                        height: 24px;
+                        font-size: 24px;
+                        text-align: center;
+                        color: #2f3d57;
+                    }
+                }
+    
+                .text {
+                    font-size: 13px;
+                    color: #565d6f;
+                    font-weight: 300;
+                }
+            }
+    
+            .pay-security {
+                margin-bottom: 24px;
+    
+                mat-icon {
+                    color: #2f3d57;
+                }
+    
+                .text {
+                    font-size: 13px;
+                    color: #565d6f;
+                    font-weight: 300;
+                }
+            }
+    
+            .social-network {
+                .logos {
+
+                    a {
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+    
+                    .icon {
+                        width: 40px;
+                        height: 40px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 20px;
+    
+                        mat-icon {
+                            color: white;
+                        }
+    
+                        i {
+                            width: 26px;
+                            height: 26px;
+                            font-size: 26px;
+                            text-align: center;
+                            color: white;
+                        }
+                    }
+    
+                    .whatsapp {
+                        background-color: #00BB2D;
+                    }
+    
+                    .facebook {
+                        background-color: #3b5998;
+                    }
+    
+                    .twitter {
+                        background-color: #1DA1F2;
+                    }
+    
+                    .email {
+                        background-color: #9ca8be;    
+                    }
+                }
+            }
+        }
+    }
+    
+    .recommended-products-section {
+        background-color: rgb(243, 244, 248);
+    
+        .recommended-products {
+            h2 {
+                color: mat-color($primary);
+                font-size: 25px;
+            }
+
+            .content-item {
+                app-card-product {
+                    width: 250px;
+
+                    @include media-breakpoint-down('sm') {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+    
+    .people-ranking-section {
+        background-color: white;
+    
+        .people-ranking {
+            h2 {
+                color: mat-color($primary);
+                font-size: 25px;
+            }
+    
+            .rankings {
+                border: 2px solid #ebeef5;
+                border-radius: 4px;
+                padding: 15px;
+    
+                .item-ranking {
+                    .starts {
+                        ul {
+                            list-style: none;
+                            margin: 0;
+                            padding: 0;
+
+                            @include media-breakpoint-down('sm') {
+                                padding: 0;
+                            }
+    
+                            li {
+                                i {
+                                    font-size: 15px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    min-width: 18px;
+                                    min-height: 18px;
+                                    width: 18px;
+                                    height: 18px;
+                                    color: #e5e8f1;
+    
+                                    &.active {
+                                        color: #fdbc00;
+                                    }
+                                }
+                            }
+                        }
+                    }
+    
+                    .title {
+                        font-size: 14px;
+                        font-weight: bold;
+                        margin-top: 5px;
+                        
+                        p {
+                            margin-bottom: 4px;
+                        }
+                    }
+    
+                    .user-date {
+                        p {
+                            margin-bottom: 4px;
+                            color: #A9B4C5;
+                        }
+                    }
+    
+                    .comment {
+                        p {
+                            color: #78818E;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .mat-form-field-infix {
+        padding: 11px 0 5px 0;
+        border-top: 0;
+
+        .mat-select-arrow-wrapper {
+            transform: translateY(0%);
+        }
+    }
+
+    .mat-form-field-wrapper {
+        padding-bottom: 0;
+    }
+}

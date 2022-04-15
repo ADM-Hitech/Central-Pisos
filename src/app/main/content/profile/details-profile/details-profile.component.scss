@@ -1,0 +1,40 @@
+@import '../../../../core/scss/app';
+
+.content {
+    .form {
+        .mat-form-field {
+            width: 100%;
+        }
+
+        .check {
+            .mat-checkbox {
+                label {
+                    margin: 0;
+                    font-size: 13px;
+                }
+            }
+
+            u {
+                font-size: 13px;
+                margin-left: 4px;
+            }
+        }
+
+        .content-button {
+            button {
+                font-weight: 300;
+            }
+        }
+
+        .cancel-my-account {
+            p {
+                font-size: 13px;
+                margin-bottom: 0;
+
+                a {
+                    color: red;
+                }
+            }
+        }
+    }
+}

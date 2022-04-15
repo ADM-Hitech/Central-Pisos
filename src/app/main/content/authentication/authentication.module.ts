@@ -4,6 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { SharedModule } from 'src/app/core/modules/shared.module';
 import { AuthenticationRouting } from './authentication.routing';
 import { AuthenticationService } from './authentication.service';
+import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   imports: [
@@ -12,7 +14,9 @@ import { AuthenticationService } from './authentication.service';
     AuthenticationRouting
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent
   ],
   providers: [
     AuthenticationService
