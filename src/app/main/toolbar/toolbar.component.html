@@ -138,13 +138,13 @@
   <div class="ctn-banner" *ngIf="activeBanner">
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <div class="ctn-label">
-        <p>Utiliza el código <b>“CENTRALAMOR”</b></p>
-        <p><small>y aprovecha el 10% OFF en todos nuestros productos.</small></p>
+        <p>Utiliza el código <b>“{{ cupon }}”</b></p>
+        <p><small>{{ promo }}</small></p>
          
       </div>
 
       <div class="ctn-code">
-        <p>Codigo: <b>CENTRALAMOR</b></p>
+        <p>Codigo: <b>{{ cupon }}</b></p>
       </div>
     </div>
   </div>

@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { CategoryModel } from 'src/app/core/models/category.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CartShopService } from 'src/app/core/services/cart-shop.service';
+import * as bannercupon from 'src/assets/banner-cupon';
 
 @Component({
   selector: 'app-toolbar',
@@ -94,6 +95,14 @@ export class ToolbarComponent implements OnInit {
   }
 
   public get activeBanner(): boolean {
-    return moment() < moment('2022-03-10');
+    return moment() >= moment(bannercupon.default.initial) && moment() <= moment(bannercupon.default.final);
+  }
+
+  public get cupon(): string {
+    return bannercupon.default.cupon ?? '';
+  }
+
+  public get promo(): string {
+    return bannercupon.default.promo ?? '';
   }
 }
